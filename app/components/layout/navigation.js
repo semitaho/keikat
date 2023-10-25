@@ -9,7 +9,7 @@ export function Navigation() {
             <span className="text-3xl">K€ikat</span> </HeaderLink>
 
       </div>
-      <div className="flex-grow">
+      <div>
       <HeaderLink href="/projektit">Vapaat projektit</HeaderLink>
 
         <HeaderLink href="/ota-yhteytta">Ota yhteyttä</HeaderLink>
