@@ -1,18 +1,25 @@
 import Link from "next/link";
 import { HeaderLink } from "../header-link";
 
+const links = [
+  { href: "/projektit", text: "Vapaat projektit" },
+  { href: "/ota-yhteytta", text: "Ota yhteyttä" },
+];
+
 export function Navigation() {
   return (
-    <nav className="bg-[#1E90FF] block  flex justify-between p-5  items-center dark:bg-slate-800 border-gray-200">
+    <nav className="bg-[#1E90FF] justify-between  flex  py-2 px-5  dark:bg-slate-800 border-gray-200">
       <div>
-        <HeaderLink  href="/">
-            <span className="text-3xl">K€ikat</span> </HeaderLink>
-
+        <HeaderLink href="/">
+          <span className="text-3xl">K€ikat</span>
+        </HeaderLink>
       </div>
       <div>
-      <HeaderLink href="/projektit">Vapaat projektit</HeaderLink>
-
-        <HeaderLink href="/ota-yhteytta">Ota yhteyttä</HeaderLink>
+        {links.map(({text, href}) => (
+          <HeaderLink key={text} href={href}>
+            {text}
+          </HeaderLink>
+        ))}
       </div>
     </nav>
   );

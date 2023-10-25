@@ -7,7 +7,7 @@ export default async function ProjectDetailPage({ params: { projectslug } }) {
   console.log("props", projectslug);
   return (
     <PageContent>
-      <PageTitle>{title}</PageTitle>
+      <PageTitle className="text-xl3">{title}</PageTitle>
       <div className="grid grid-cols-3 w-full">
         <div>tiedot</div>
         <div className="col-span-2">
