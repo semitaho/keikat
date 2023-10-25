@@ -11,3 +11,6 @@ function decorateWithTailwind(html: string): string {
 export function getImageByCategory(category: string): string {
     return CATEGORY_IMAGE_MAP[category] || CATEGORY_IMAGE_MAP["other"];
 }
+
+
+
