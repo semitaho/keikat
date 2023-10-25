@@ -14,6 +14,7 @@ export default function Home() {
         <PageTitle>
           Keikat on uudenlainen sivusto ohjelmistotekniikan uranuurtajille!
         </PageTitle>
+        <p>Uudet projektit, uudet toimeksiannot, täältä ne löytyvät!</p>
       </article>
     </PageContent>
   );
