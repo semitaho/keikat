@@ -1,48 +1,70 @@
-const functions = require("@google-cloud/functions-framework");
-const fetch = require("node-fetch");
-const jsdom = require("jsdom");
-const { link } = require("fs/promises");
+import functions from "@google-cloud/functions-framework";
+import fetch from "node-fetch";
+import fs, { link } from "fs";
+import path from "path";
+
+import jsdom from "jsdom";
+import {
+  ERROR_CODE_ROW_ALREADY_EXISTS,
+  connectToDatabase,
+  saveProject,
+} from "./lib/db-util.js";
 const { JSDOM } = jsdom;
 
 const providerInfo = {
-  title: crawlForTitle,
-  skills: crawlForSkills,
-  description: crawlForDescription,
-  tags: crawlForTags,
+  title: "crawlForTitle",
+  skills: "crawlForSkills",
+  description: "crawlForDescription",
 };
 
-async function crawlForTitle(pageContent) {
-  const title = new JSDOM(pageContent).window.document.querySelector(
-    "h1"
-  ).textContent;
-  return title;
+function parseTagsFromSkills(skills) {
+  return skills.map((skill) => skill.toLocaleLowerCase("fi"));
 }
 
-async function crawlForDescription(pageContent) {
-  const description = new JSDOM(pageContent).window.document.querySelector(
-    "div.wysiwyg"
+
+async function readProviders() {
+  const providersPath = path.join(process.cwd(), "providers");
+  const providerFiles = fs.readdirSync(providersPath);
+  return providerFiles.map((providerFile) =>
+    providerFile.substring(0, providerFile.lastIndexOf("."))
   );
-  return description.innerHTML;
 }
 
-function parseTagsFromSkills(tags) {
-  return tags.map((tag) => tag.toLocaleLowerCase("fi"));
-}
-
-async function crawlForSkills(pageContent) {
-  const allLists = new JSDOM(pageContent).window.document.querySelectorAll(
-    "li"
-  );
-  const listsWithSkills = Array.from(allLists)
-    .filter((li) => li.textContent.includes("Skills:"))
-    .flatMap((li) => Array.from(li.querySelectorAll("a")))
-    .map((link) => link.textContent);
-  console.log("skills", listsWithSkills);
-  return listsWithSkills;
-}
-async function crawlForTags(pageContent) {
-  const crawlForSkills = await crawlForSkills(pageContent);
-  return parseTagsFromSkills(crawlForSkills);
+async function iterateProjects(provider, providerpath, projects) {
+  const projectObj = {};
+  const client = await connectToDatabase();
+  for (const projectlink of projects) {
+    projectObj["reference"] = projectlink;
+    projectObj["provider"] = provider;
+    const content = await fetchProjectDetailContent(projectlink);
+    const jsDomObject = new JSDOM(content);
+    const keys = Object.keys(providerInfo);
+    const importedData = await import(providerpath);
+    for (const key of keys) {
+      const fnName = providerInfo[key];
+      if (importedData[fnName]) {
+        projectObj[key] = await importedData[fnName](jsDomObject);
+      } else {
+        console.warn("please create  function:" + fnName);
+      }
+    }
+    if (projectObj.skills) {
+      projectObj.tags = parseTagsFromSkills(projectObj.skills);
+    }
+    if (projectObj.reference) {
+      projectObj.slug = projectlink.substring(projectlink.lastIndexOf("/") + 1);
+    }
+    try {
+      await saveProject(client, projectObj);
+      console.log("project created with slug", projectObj.slug);
+    } catch (error) {
+      if (error.code === ERROR_CODE_ROW_ALREADY_EXISTS) {
+        console.log("PROJECT already exists in db, slug: " + projectObj.slug);
+      } else {
+        console.error(error);
+      }
+    }
+  }
 }
 
 functions.http("updateGigs", async (req, res) => {
@@ -51,6 +73,15 @@ functions.http("updateGigs", async (req, res) => {
     return;
   }
 
+  const providers = await readProviders();
+  for (const provider of providers) {
+    const providerPath = `./providers/${provider}.js`;
+    const { readAllProjectLinks } = await import(providerPath);
+    const links = await readAllProjectLinks();
+    iterateProjects(provider, providerPath, links);
+  }
+
+  /*
   const response = await fetch("https://wittedpartners.com/projects");
   const content = await response.text();
   const ulNode = new JSDOM(content).window.document.querySelector("ul.wrapper");
@@ -58,7 +89,6 @@ functions.http("updateGigs", async (req, res) => {
   const maxAmountOfProjets = 11;
 
   for (let index = 0; index < maxAmountOfProjets; index++) {
-    const content = await fetchProjectDetailContent(linkNodes, index);
     console.log(`Content index ${index} fetched.`);
     const keys = Object.keys(providerInfo);
     for (let keyIndex = 0; keyIndex < keys.length; keyIndex++) {
@@ -74,12 +104,11 @@ functions.http("updateGigs", async (req, res) => {
     console.log("Assigment number " + index + " crawled success!\n");
   }
 
-  res.send(`Hello handsome!`);
+  */
+  res.send(`Hello handsome!: providers: ${providers}`);
 });
-async function fetchProjectDetailContent(linkNodes, index) {
-  const href = linkNodes[index].href;
-  console.log("GOT href!", href);
-  const response = await fetch(linkNodes[index].href);
+async function fetchProjectDetailContent(href) {
+  const response = await fetch(href);
   const content = await response.text();
   return content;
 }

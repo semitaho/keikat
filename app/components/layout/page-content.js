@@ -6,5 +6,6 @@ export default function PageContent({ children }) {
       {children}
       </div>
     </main>
+     
   );
 }

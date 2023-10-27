@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@google-cloud/functions-framework": "^3.0.0",
+    "@vercel/postgres": "^0.5.0",
     "jsdom": "^22.1.0",
     "mongodb": "^6.2.0",
     "node-fetch": "^2.7.0"
@@ -8,6 +9,7 @@
   "watch": {
     "start": "*.js"
   },
+  "type": "module",
   "scripts": {
     "watch": "npm-watch start",
     "start": "npx functions-framework --target=updateGigs"

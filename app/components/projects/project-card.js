@@ -7,7 +7,7 @@ export default function ProjectCard({ title, category, excerpt, slug, tags }) {
   const imagepath = `/images/${getImageByCategory(category)}`;
   return (
     <Link
-      className="max-w-[20%] flex flex-col rounded hover:scale-105 transform transition  bg-white shadow-lg"
+      className="lg:max-w-[20%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg"
       href={`/projektit/${slug}`}
     >
       <div>

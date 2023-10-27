@@ -1,6 +1,6 @@
 import PageContent from "@/app/components/layout/page-content";
 import PageTitle from "@/app/components/ui/page-title";
-import { getProjektiBySlug } from "@/app/data/dummy-data";
+import { getProjektiBySlug } from "@/app/lib/db-util";
 
 export default async function ProjectDetailPage({ params: { projectslug } }) {
   const { title, description } = await getProjektiBySlug(projectslug);
