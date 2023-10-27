@@ -2,7 +2,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Navigation } from "./components/layout/navigation";
-import Head from "next/head";
 
 export default function RootLayout({ children }) {
   return (

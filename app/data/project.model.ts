@@ -5,4 +5,5 @@ export interface Project {
   skills: string[];
   tags: string[];
   description: string;
+  created_at: Date
 }

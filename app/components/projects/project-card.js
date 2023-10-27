@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { CATEGORY_IMAGE_MAP } from "../../data/dummy-data";
 import Tag from "./tag";
 import Link from "next/link";
 import { getImageByCategory } from "@/app/lib/parser-util";
-export default function ProjectCard({ title, category, excerpt, slug, tags }) {
+import { useDateFormat } from "@/app/hooks/server-hooks";
+export default function ProjectCard({ title, created_at, category, excerpt, slug, tags }) {
   const imagepath = `/images/${getImageByCategory(category)}`;
+  const df = useDateFormat();
   return (
     <Link
       className="lg:max-w-[20%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg"
@@ -39,7 +40,7 @@ export default function ProjectCard({ title, category, excerpt, slug, tags }) {
           </ul>
         </div>
         <div className="flex justify-end p-3">
-          <time className="text-gray-400 text-sm">21.10.2023</time>
+          <time className="text-gray-400 text-sm">{df(created_at)}</time>
         </div>
       </div>
     </Link>
