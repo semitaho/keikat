@@ -1,43 +1,42 @@
 import functions from "@google-cloud/functions-framework";
 import fetch from "node-fetch";
-import fs, { link } from "fs";
-import path from "path";
 
-import jsdom from "jsdom";
 import {
   ERROR_CODE_ROW_ALREADY_EXISTS,
   connectToDatabase,
+  fetchActiveProviders,
   saveProject,
 } from "./lib/db-util.js";
-const { JSDOM } = jsdom;
+import {
+  fetchJSON,
+  navigateFromJson,
+  navigateFromJsonPaths,
+} from "./lib/json-util.js";
+import { fetchProjectDetailContentJsDOM } from "./lib/html-util.js";
 
 const providerInfo = {
   title: "crawlForTitle",
   skills: "crawlForSkills",
   description: "crawlForDescription",
+  location: "crawlForLocation",
 };
 
 function parseTagsFromSkills(skills) {
   return skills.map((skill) => skill.toLocaleLowerCase("fi"));
 }
 
-
 async function readProviders() {
-  const providersPath = path.join(process.cwd(), "providers");
-  const providerFiles = fs.readdirSync(providersPath);
-  return providerFiles.map((providerFile) =>
-    providerFile.substring(0, providerFile.lastIndexOf("."))
-  );
+  const activeProviders = await fetchActiveProviders();
+  return activeProviders;
 }
 
-async function iterateProjects(provider, providerpath, projects) {
-  const projectObj = {};
+async function iterateHTMLProjects(provider, providerpath, projects) {
   const client = await connectToDatabase();
   for (const projectlink of projects) {
+    const projectObj = {};
     projectObj["reference"] = projectlink;
     projectObj["provider"] = provider;
-    const content = await fetchProjectDetailContent(projectlink);
-    const jsDomObject = new JSDOM(content);
+    const jsDomObject = await fetchProjectDetailContentJsDOM(projectlink);
     const keys = Object.keys(providerInfo);
     const importedData = await import(providerpath);
     for (const key of keys) {
@@ -75,40 +74,73 @@ functions.http("updateGigs", async (req, res) => {
 
   const providers = await readProviders();
   for (const provider of providers) {
-    const providerPath = `./providers/${provider}.js`;
-    const { readAllProjectLinks } = await import(providerPath);
-    const links = await readAllProjectLinks();
-    iterateProjects(provider, providerPath, links);
-  }
+    const { provider_id, fetch_type, projectpage_ref } = provider;
+    switch (fetch_type) {
+      /*
+      case "HTML":
+        const { readAllProjectLinks } = await import(providerPath);
+        const links = await readAllProjectLinks(projectpage_ref);
+        await iterateHTMLProjects(provider_id, providerPath, links);
+        break;
+        */
+      case "JSON":
+        await iterateJSONProjects(provider);
+        break;
 
-  /*
-  const response = await fetch("https://wittedpartners.com/projects");
-  const content = await response.text();
-  const ulNode = new JSDOM(content).window.document.querySelector("ul.wrapper");
-  const linkNodes = ulNode.querySelectorAll("a");
-  const maxAmountOfProjets = 11;
-
-  for (let index = 0; index < maxAmountOfProjets; index++) {
-    console.log(`Content index ${index} fetched.`);
-    const keys = Object.keys(providerInfo);
-    for (let keyIndex = 0; keyIndex < keys.length; keyIndex++) {
-      const projectKey = keys[keyIndex];
-      console.log(`START map index: ${index}, key: ${projectKey}`);
-      const value = await providerInfo[projectKey](content);
-      console.log(
-        `END map index: ${index}, key: ${projectKey}, value: ${value}`
-      );
-      console.log("----");
+      default:
+        console.warn("INVALID fetch type: " + fetch_type);
+        break;
     }
-
-    console.log("Assigment number " + index + " crawled success!\n");
   }
 
-  */
   res.send(`Hello handsome!: providers: ${providers}`);
 });
-async function fetchProjectDetailContent(href) {
-  const response = await fetch(href);
-  const content = await response.text();
-  return content;
+
+async function iterateJSONProjects(provider) {
+  const response = await fetch(provider.projectpage_ref);
+  const jsonProjects = await response.json();
+  const navigatedProjects = navigateFromJson(
+    jsonProjects,
+    "pageProps.initialState.gigs.gigs"
+  );
+  const client = await connectToDatabase();
+
+  for (const project of navigatedProjects) {
+    const projectlink = `https://www.finitec.fi/_next/data/hxDzwjrwa0s34NpTAoCph/fi/gigs/${project.id}.json`;
+    const projectObj = {
+      reference: projectlink,
+      slug: project.id,
+      provider: provider.provider_id,
+    };
+
+    const json = await fetchJSON(projectlink);
+    projectObj.title = navigateFromJsonPaths(project, [
+      "description_fi.title",
+      "description_en.title",
+    ]);
+    projectObj.subtitle = navigateFromJsonPaths(project, [
+      "description_fi.subtitle",
+      "description_en.subtitle",
+    ]);
+    projectObj.excerpt = navigateFromJsonPaths(json, [
+      "pageProps.gig.description_fi.byline",
+      "pageProps.gig.description_en.byline",
+    ]);
+    projectObj.description = navigateFromJsonPaths(json, [
+      "pageProps.gig.description_fi.public_body",
+      "pageProps.gig.description_en.public_body",
+    ]);
+    projectObj.skills = navigateFromJsonPaths(json, [
+      "pageProps.gig.categories",
+    ]);
+    projectObj.location = navigateFromJsonPaths(json, [
+      "pageProps.gig.description_fi.location",
+      "pageProps.gig.description_en.location",
+    ]);
+
+    projectObj.tags = parseTagsFromSkills(projectObj.skills);
+    await saveProject(client, projectObj);
+    console.log("project created with slug", projectObj.slug);
+
+  }
 }

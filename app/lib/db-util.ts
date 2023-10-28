@@ -16,6 +16,7 @@ export async function loadAllProjects() {
 export async function getProjektiBySlug(slug: string) {
     const client = await connectToDatabase();
     const results = await client.sql`SELECT * FROM project WHERE slug = ${slug}`;
+
     if (results.rows.length) {
         console.log('noniin', results.rows);
         return results.rows[0];

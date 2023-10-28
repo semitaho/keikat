@@ -3,12 +3,22 @@ import Tag from "./tag";
 import Link from "next/link";
 import { getImageByCategory } from "@/app/lib/parser-util";
 import { useDateFormat } from "@/app/hooks/server-hooks";
-export default function ProjectCard({ title, created_at, category, excerpt, slug, tags }) {
+import FinnishDate from "./../ui/finnish-date";
+export default function ProjectCard({
+  title,
+  subtitle,
+  created_at,
+  category,
+  location,
+  slug,
+  tags,
+  excerpt,
+}) {
   const imagepath = `/images/${getImageByCategory(category)}`;
   const df = useDateFormat();
   return (
     <Link
-      className="lg:max-w-[20%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg"
+      className="lg:max-w-[30%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg"
       href={`/projektit/${slug}`}
     >
       <div>
@@ -22,11 +32,21 @@ export default function ProjectCard({ title, created_at, category, excerpt, slug
         />
       </div>
 
-      <div className="px-3 flex-grow">
-        <div className=" pb-3 pt-5">
-          <h3 className="font-semibold">{title}</h3>
+      <div className="px-3 flex-none flex flex-col">
+        <div className=" pb-3 pt-5 flex-grow">
+          <h3 className="font-semibold uppercase">{title}</h3>
+          <p className="text-gray-700 text-xs">{subtitle}</p>
         </div>
-        <p>{excerpt}</p>
+        <div className="flex justify-between font-red font-semibold text-sm">
+          <span className="italic text-xs text-gray-500">Aloitus 01/2024</span>
+          <span className="text-gray-500 text-xs">83 €</span>
+        </div>
+      </div>
+      <div className="px-3 my-2 flex-grow">
+        <p
+          className="text-clip"
+          dangerouslySetInnerHTML={{ __html: excerpt }}
+        />
       </div>
 
       <div>
@@ -39,8 +59,9 @@ export default function ProjectCard({ title, created_at, category, excerpt, slug
             ))}
           </ul>
         </div>
-        <div className="flex justify-end p-3">
-          <time className="text-gray-400 text-sm">{df(created_at)}</time>
+        <div className="flex gap-2 items-center flex-none text-gray-400 text-sm justify-between p-3">
+          <span className="text-green text-gray-600 italic">{location}</span>
+          <time className="text-right">{df(created_at)}</time>
         </div>
       </div>
     </Link>

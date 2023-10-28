@@ -1,5 +1,3 @@
-import { Metadata } from "next";
-
 import PageLink from './components/ui/page-link';
 import PageTitle from "./components/ui/page-title";
 import PageContent from "./components/layout/page-content";
