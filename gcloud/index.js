@@ -54,16 +54,7 @@ async function iterateHTMLProjects(provider, providerpath, projects) {
     if (projectObj.reference) {
       projectObj.slug = projectlink.substring(projectlink.lastIndexOf("/") + 1);
     }
-    try {
-      await saveProject(client, projectObj);
-      console.log("project created with slug", projectObj.slug);
-    } catch (error) {
-      if (error.code === ERROR_CODE_ROW_ALREADY_EXISTS) {
-        console.log("PROJECT already exists in db, slug: " + projectObj.slug);
-      } else {
-        console.error(error);
-      }
-    }
+    await checkAndSaveProject(client, projectObj);
   }
 }
 
@@ -97,6 +88,19 @@ functions.http("updateGigs", async (req, res) => {
   res.send(`Hello handsome!: providers: ${providers}`);
 });
 
+async function checkAndSaveProject(client, projectObj) {
+  try {
+    await saveProject(client, projectObj);
+    console.log("project created with slug", projectObj.slug);
+  } catch (error) {
+    if (error.code === ERROR_CODE_ROW_ALREADY_EXISTS) {
+      console.log("PROJECT already exists in db, slug: " + projectObj.slug);
+    } else {
+      console.error(error);
+    }
+  }
+}
+
 async function iterateJSONProjects(provider) {
   const response = await fetch(provider.projectpage_ref);
   const jsonProjects = await response.json();
@@ -115,7 +119,6 @@ async function iterateJSONProjects(provider) {
     };
 
     console.log("project processing with slug", projectObj.slug);
-
     const json = await fetchJSON(projectlink);
     projectObj.title = navigateFromJsonPaths(project, [
       "description_fi.title",
@@ -129,22 +132,17 @@ async function iterateJSONProjects(provider) {
       "pageProps.gig.description_fi.byline",
       "pageProps.gig.description_en.byline",
     ]);
-    
     projectObj.description = navigateFromJsonPaths(json, [
       "pageProps.gig.description_fi.public_body",
       "pageProps.gig.description_en.public_body",
     ]);
-    
-   
     projectObj.skills = navigateFromJsonPaths(json, [
       "pageProps.gig.categories",
     ]);
-    
     projectObj.location = navigateFromJsonPaths(json, [
       "pageProps.gig.description_fi.location",
       "pageProps.gig.description_en.location",
     ]);
-    
     projectObj.created_at = navigateFromJsonPaths(json, [
       "pageProps.gig.published_at"
     ]);
@@ -152,13 +150,7 @@ async function iterateJSONProjects(provider) {
       "pageProps.gig.description_fi.starts_at",
       "pageProps.gig.description_en.starts_at",
     ]));
-    console.log('starts at',  projectObj.start_date);
-
-    
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
-    
-    await saveProject(client, projectObj);
-    console.log("project created with slug", projectObj.slug);
-
+    await checkAndSaveProject(client, projectObj);
   }
 }
