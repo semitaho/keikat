@@ -14,32 +14,13 @@ export async function fetchActiveProviders() {
 }
 
 export const ERROR_CODE_ROW_ALREADY_EXISTS = "23505";
-export async function saveProject(
-  client,
-  {
-    title,
-    subtitle,
-    excerpt,
-    description,
-    slug,
-    reference,
-    skills,
-    tags,
-    provider,
-    location,
-  }
-) {
-  return await client.sql`insert into project(title, subtitle, excerpt, description, slug, reference, skills, tags, provider, location) values(
-        ${title},
-        ${subtitle},
-        ${excerpt},
+export async function saveProject(client, project) {
+  const fields = Object.keys(project).filter((field) => project[field]);
+  const values = fields.map((field) => project[field]);
+  let valueStr = values.map((_, index) => `$${index + 1}`).join(", ");
 
-        ${description},
-        ${slug},
-        ${reference},
-        ${skills},
-        ${tags},
-        ${provider},
-        ${location}
-        )`;
+  let sqlToInsert = `insert into project(${fields.join(", ")}) values(`;
+  sqlToInsert += valueStr;
+  sqlToInsert += ")";
+  return await client.query(sqlToInsert, values);
 }

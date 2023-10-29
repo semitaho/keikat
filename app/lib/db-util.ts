@@ -9,7 +9,7 @@ import { VercelPoolClient, db } from "@vercel/postgres";
 
 export async function loadAllProjects() {
     const client = await connectToDatabase();
-    const projektit = await client.sql`SELECT * FROM project`;
+    const projektit = await client.sql`SELECT * FROM project ORDER BY created_at DESC`;
     return projektit.rows;
 }
 

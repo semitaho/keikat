@@ -5,6 +5,7 @@ import { loadAllProjects } from "../lib/db-util";
 
 export default  async function ProjektitPage() {
   const projektit = await loadAllProjects()
+  
   return (
     <PageContent>
       <PageTitle>Avoimet toimeksiannot</PageTitle>

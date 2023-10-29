@@ -13,6 +13,7 @@ import {
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
 import { fetchProjectDetailContentJsDOM } from "./lib/html-util.js";
+import { parseDate } from "./lib/parser-util.js";
 
 const providerInfo = {
   title: "crawlForTitle",
@@ -113,6 +114,8 @@ async function iterateJSONProjects(provider) {
       provider: provider.provider_id,
     };
 
+    console.log("project processing with slug", projectObj.slug);
+
     const json = await fetchJSON(projectlink);
     projectObj.title = navigateFromJsonPaths(project, [
       "description_fi.title",
@@ -126,19 +129,34 @@ async function iterateJSONProjects(provider) {
       "pageProps.gig.description_fi.byline",
       "pageProps.gig.description_en.byline",
     ]);
+    
     projectObj.description = navigateFromJsonPaths(json, [
       "pageProps.gig.description_fi.public_body",
       "pageProps.gig.description_en.public_body",
     ]);
+    
+   
     projectObj.skills = navigateFromJsonPaths(json, [
       "pageProps.gig.categories",
     ]);
+    
     projectObj.location = navigateFromJsonPaths(json, [
       "pageProps.gig.description_fi.location",
       "pageProps.gig.description_en.location",
     ]);
+    
+    projectObj.created_at = navigateFromJsonPaths(json, [
+      "pageProps.gig.published_at"
+    ]);
+    projectObj.start_date =  parseDate(navigateFromJsonPaths(json, [
+      "pageProps.gig.description_fi.starts_at",
+      "pageProps.gig.description_en.starts_at",
+    ]));
+    console.log('starts at',  projectObj.start_date);
 
+    
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
+    
     await saveProject(client, projectObj);
     console.log("project created with slug", projectObj.slug);
 
