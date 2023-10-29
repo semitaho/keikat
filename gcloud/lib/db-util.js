@@ -5,11 +5,9 @@ export async function connectToDatabase() {
   return client;
 }
 
-export async function fetchActiveProviders() {
-  const client = await db.connect();
+export async function fetchActiveProviders(client) {
   const results = await client.sql`SELECT * FROM provider where active = true`;
   console.log("GOT active providers: " + results.rowCount);
-  await client.end();
   return results.rows;
 }
 
@@ -23,4 +21,38 @@ export async function saveProject(client, project) {
   sqlToInsert += valueStr;
   sqlToInsert += ")";
   return await client.query(sqlToInsert, values);
+}
+
+export async function updateProject(client, project) {
+  const fields = Object.keys(project)
+    .filter((field) => field !== "project_id")
+    .filter((field) => project[field]);
+  const valueArray = fields.map((field) => project[field]);
+  const values = fields.map((field, index) => `${field} =  $${index + 1}`);
+  let valueStr = values.join(", ");
+  let sqlToUpdate =
+    `UPDATE project SET ${valueStr} where project_id = ` + project.project_id;
+  return await client.query(sqlToUpdate, valueArray);
+}
+
+export async function getProjectBySlug(slug) {
+  const client = await connectToDatabase();
+  const results = await client.sql`SELECT * FROM project WHERE slug = ${slug}`;
+
+  if (results.rows.length) {
+    return results.rows[0];
+  }
+  return null;
+}
+
+export async function getProjectByReference(client, reference) {
+  console.log("with ref", reference);
+
+  const results =
+    await client.sql`SELECT * FROM project WHERE reference = ${reference}`;
+
+  if (results.rows.length) {
+    return results.rows[0];
+  }
+  return null;
 }

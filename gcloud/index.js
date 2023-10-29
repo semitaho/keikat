@@ -5,39 +5,110 @@ import {
   ERROR_CODE_ROW_ALREADY_EXISTS,
   connectToDatabase,
   fetchActiveProviders,
+  getProjectByReference,
+  getProjectBySlug,
   saveProject,
+  updateProject,
 } from "./lib/db-util.js";
 import {
   fetchJSON,
   navigateFromJson,
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
-import { fetchProjectDetailContentJsDOM } from "./lib/html-util.js";
+import {
+  fetchHTMLJSDOM,
+  navigateFromHtml,
+  readAllProjectLinks,
+} from "./lib/html-util.js";
 import { parseDate } from "./lib/parser-util.js";
-
-const providerInfo = {
-  title: "crawlForTitle",
-  skills: "crawlForSkills",
-  description: "crawlForDescription",
-  location: "crawlForLocation",
-};
 
 function parseTagsFromSkills(skills) {
   return skills.map((skill) => skill.toLocaleLowerCase("fi"));
 }
 
-async function readProviders() {
-  const activeProviders = await fetchActiveProviders();
+async function readProviders(client ) {
+  const activeProviders = await fetchActiveProviders(client);
   return activeProviders;
 }
 
-async function iterateHTMLProjects(provider, providerpath, projects) {
+functions.http("updateGigs", async (req, res) => {
+  if (req.get("API_KEY") !== process.env.API_KEY) {
+    res.status(401).send("Not authorized with API_KEY: " + req.get("API_KEY"));
+    return;
+  }
+
   const client = await connectToDatabase();
-  for (const projectlink of projects) {
-    const projectObj = {};
-    projectObj["reference"] = projectlink;
+
+  const providers = await readProviders(client);
+  for (const provider of providers) {
+    const { provider_id, fetch_type, projectpage_ref, projects_querypath } =
+      provider;
+    switch (fetch_type) {
+      case "HTML":
+        await iterateHTMLProjects(client, provider);
+
+        //provider_id, providerPath, links);
+
+        //const providerPath = `./providers/${provider_id}.js`;
+        //const { readAllProjectLinks } = await import(providerPath);
+        /*
+        
+        const links = await readAllProjectLinks(projectpage_ref);
+         */
+        break;
+
+      case "JSON":
+        // await iterateJSONProjects(provider);
+        break;
+
+      default:
+        console.warn("INVALID fetch type: " + fetch_type);
+        break;
+    }
+  }
+
+  res.send(`Hello handsome!: providers: ${providers}`);
+});
+
+async function checkAndSaveProject(client, projectObj) {
+  try {
+    if (projectObj.project_id) {
+      await updateProject(client, projectObj);
+      console.log("project UPDATED with slug", projectObj.slug);
+    } else {
+      await saveProject(client, projectObj);
+      console.log("project CREATED with slug", projectObj.slug);
+    }
+  } catch (error) {
+    if (error.code === ERROR_CODE_ROW_ALREADY_EXISTS) {
+      console.log("PROJECT already exists in db, slug: " + projectObj.slug);
+    } else {
+      console.error(error);
+    }
+  }
+}
+
+async function iterateHTMLProjects(client, { projectpage_ref, projects_querypath, provider_id }) {
+  const projectlinks = await readAllProjectLinks(
+    projectpage_ref,
+    projects_querypath
+  );
+  console.log('links', projectlinks);
+
+  for (const projectlink of projectlinks) {
+    const projectObj = await initProject(client, projectlink);
+    const jsDom = await fetchHTMLJSDOM(projectlink);
+    projectObj.title = navigateFromHtml(jsDom, 'h1', true).textContent;
+    console.log('titlte', projectObj.title);
+    projectObj.provider = provider_id;
+    projectObj.slug = parseSlug(projectlink);
+    projectObj.description = navigateFromHtml(jsDom, 'section p.text-base', true).innerHTML;
+    console.log('slug käsitelty', projectObj.description);
+
+    await checkAndSaveProject(client, projectObj);
+
+    /*
     projectObj["provider"] = provider;
-    const jsDomObject = await fetchProjectDetailContentJsDOM(projectlink);
     const keys = Object.keys(providerInfo);
     const importedData = await import(providerpath);
     for (const key of keys) {
@@ -54,51 +125,16 @@ async function iterateHTMLProjects(provider, providerpath, projects) {
     if (projectObj.reference) {
       projectObj.slug = projectlink.substring(projectlink.lastIndexOf("/") + 1);
     }
-    await checkAndSaveProject(client, projectObj);
+  }
+  */
   }
 }
 
-functions.http("updateGigs", async (req, res) => {
-  if (req.get("API_KEY") !== process.env.API_KEY) {
-    res.status(401).send("Not authorized with API_KEY: " + req.get("API_KEY"));
-    return;
+function parseSlug(link) {
+  if (link.includes('GG-')) {
+    return link.substr(link.indexOf('GG-'), link.lastIndexOf("/"));
   }
-
-  const providers = await readProviders();
-  for (const provider of providers) {
-    const { provider_id, fetch_type, projectpage_ref } = provider;
-    switch (fetch_type) {
-      /*
-      case "HTML":
-        const { readAllProjectLinks } = await import(providerPath);
-        const links = await readAllProjectLinks(projectpage_ref);
-        await iterateHTMLProjects(provider_id, providerPath, links);
-        break;
-        */
-      case "JSON":
-        await iterateJSONProjects(provider);
-        break;
-
-      default:
-        console.warn("INVALID fetch type: " + fetch_type);
-        break;
-    }
-  }
-
-  res.send(`Hello handsome!: providers: ${providers}`);
-});
-
-async function checkAndSaveProject(client, projectObj) {
-  try {
-    await saveProject(client, projectObj);
-    console.log("project created with slug", projectObj.slug);
-  } catch (error) {
-    if (error.code === ERROR_CODE_ROW_ALREADY_EXISTS) {
-      console.log("PROJECT already exists in db, slug: " + projectObj.slug);
-    } else {
-      console.error(error);
-    }
-  }
+  return link.substr(link.lastIndexOf("/")+1);
 }
 
 async function iterateJSONProjects(provider) {
@@ -112,12 +148,7 @@ async function iterateJSONProjects(provider) {
 
   for (const project of navigatedProjects) {
     const projectlink = `https://www.finitec.fi/_next/data/hxDzwjrwa0s34NpTAoCph/fi/gigs/${project.id}.json`;
-    const projectObj = {
-      reference: projectlink,
-      slug: project.id,
-      provider: provider.provider_id,
-    };
-
+    const projectObj = await initProject(projectlink);
     console.log("project processing with slug", projectObj.slug);
     const json = await fetchJSON(projectlink);
     projectObj.title = navigateFromJsonPaths(project, [
@@ -144,13 +175,24 @@ async function iterateJSONProjects(provider) {
       "pageProps.gig.description_en.location",
     ]);
     projectObj.created_at = navigateFromJsonPaths(json, [
-      "pageProps.gig.published_at"
+      "pageProps.gig.published_at",
     ]);
-    projectObj.start_date =  parseDate(navigateFromJsonPaths(json, [
-      "pageProps.gig.description_fi.starts_at",
-      "pageProps.gig.description_en.starts_at",
-    ]));
+    projectObj.start_date = parseDate(
+      navigateFromJsonPaths(json, [
+        "pageProps.gig.description_fi.starts_at",
+        "pageProps.gig.description_en.starts_at",
+      ])
+    );
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
     await checkAndSaveProject(client, projectObj);
   }
+}
+
+async function initProject(client, reference) {
+  const project = await getProjectByReference(client, reference);
+  return (
+    (project && { ...project, updated_at: new Date() }) || {
+      reference,
+    }
+  );
 }

@@ -1,15 +1,8 @@
 import fetch from "node-fetch";
 
 import jsdom from "jsdom";
+import { navigateFromHtml } from "../lib/html-util.js";
 const { JSDOM } = jsdom;
-
-export async function readAllProjectLinks(  projectpage_ref ) {
-  const response = await fetch(projectpage_ref);
-  const content = await response.text();
-  const ulNode = new JSDOM(content).window.document.querySelector("ul.wrapper");
-  const linkNodes = Array.from(ulNode.querySelectorAll("a"));
-  return linkNodes.map((linkNodes) => linkNodes.href);
-}
 
 export async function crawlForTitle(jsdom) {
   const title = jsdom.window.document.querySelector("h1").textContent;
