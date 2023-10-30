@@ -12,6 +12,7 @@ import {
 } from "./lib/db-util.js";
 import {
   fetchJSON,
+  get,
   navigateFromJson,
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
@@ -26,7 +27,7 @@ function parseTagsFromSkills(skills) {
   return skills.map((skill) => skill.toLocaleLowerCase("fi"));
 }
 
-async function readProviders(client ) {
+async function readProviders(client) {
   const activeProviders = await fetchActiveProviders(client);
   return activeProviders;
 }
@@ -45,7 +46,7 @@ functions.http("updateGigs", async (req, res) => {
       provider;
     switch (fetch_type) {
       case "HTML":
-        await iterateHTMLProjects(client, provider);
+        // await iterateHTMLProjects(client, provider);
 
         //provider_id, providerPath, links);
 
@@ -58,7 +59,10 @@ functions.http("updateGigs", async (req, res) => {
         break;
 
       case "JSON":
-        // await iterateJSONProjects(provider);
+        await iterateJSONProjects(provider);
+        break;
+      case "JSONCOMMON":
+        await iterateJSONCOMMONProjects(provider);
         break;
 
       default:
@@ -88,22 +92,29 @@ async function checkAndSaveProject(client, projectObj) {
   }
 }
 
-async function iterateHTMLProjects(client, { projectpage_ref, projects_querypath, provider_id }) {
+async function iterateHTMLProjects(
+  client,
+  { projectpage_ref, projects_querypath, provider_id }
+) {
   const projectlinks = await readAllProjectLinks(
     projectpage_ref,
     projects_querypath
   );
-  console.log('links', projectlinks);
+  console.log("links", projectlinks);
 
   for (const projectlink of projectlinks) {
     const projectObj = await initProject(client, projectlink);
     const jsDom = await fetchHTMLJSDOM(projectlink);
-    projectObj.title = navigateFromHtml(jsDom, 'h1', true).textContent;
-    console.log('titlte', projectObj.title);
+    projectObj.title = navigateFromHtml(jsDom, "h1", true).textContent;
+    console.log("titlte", projectObj.title);
     projectObj.provider = provider_id;
     projectObj.slug = parseSlug(projectlink);
-    projectObj.description = navigateFromHtml(jsDom, 'section p.text-base', true).innerHTML;
-    console.log('slug käsitelty', projectObj.description);
+    projectObj.description = navigateFromHtml(
+      jsDom,
+      "section p.text-base",
+      true
+    ).innerHTML;
+    console.log("slug käsitelty", projectObj.description);
 
     await checkAndSaveProject(client, projectObj);
 
@@ -131,19 +142,15 @@ async function iterateHTMLProjects(client, { projectpage_ref, projects_querypath
 }
 
 function parseSlug(link) {
-  if (link.includes('GG-')) {
-    return link.substr(link.indexOf('GG-'), link.lastIndexOf("/"));
+  if (link.includes("GG-")) {
+    return link.substr(link.indexOf("GG-"), link.lastIndexOf("/"));
   }
-  return link.substr(link.lastIndexOf("/")+1);
+  return link.substr(link.lastIndexOf("/") + 1);
 }
 
 async function iterateJSONProjects(provider) {
-  const response = await fetch(provider.projectpage_ref);
-  const jsonProjects = await response.json();
-  const navigatedProjects = navigateFromJson(
-    jsonProjects,
-    "pageProps.initialState.gigs.gigs"
-  );
+  const navigatedProjects = await getJSONProjects(provider);
+
   const client = await connectToDatabase();
 
   for (const project of navigatedProjects) {
@@ -185,6 +192,52 @@ async function iterateJSONProjects(provider) {
     );
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
     await checkAndSaveProject(client, projectObj);
+  }
+}
+
+async function getJSONProjects(provider) {
+  const response = await fetch(provider.projectpage_ref);
+  const jsonProjects = await response.json();
+  const navigatedProjects = navigateFromJson(
+    jsonProjects,
+    provider.projects_querypath
+  );
+  return navigatedProjects;
+}
+
+async function iterateJSONCOMMONProjects(provider) {
+  const navigatedProjects = await getJSONProjects(provider);
+  const client = await connectToDatabase();
+
+  for (const project of navigatedProjects) {
+    const projectObj = await initProject(client, project.id);
+    projectObj.provider = provider.provider_id;
+    projectObj.slug = navigateFromJson(project, "id");
+    projectObj.title = navigateFromJsonPaths(project, ["title"]);
+    /*
+    projectObj.subtitle = navigateFromJsonPaths(project, [
+      "description_fi.subtitle",
+      "description_en.subtitle",
+    ]);
+   
+    projectObj.excerpt = navigateFromJsonPaths(json, [
+      "pageProps.gig.description_fi.byline",
+      "pageProps.gig.description_en.byline",
+    ]);
+    */
+    projectObj.description = navigateFromJsonPaths(project, ["description"]);
+    projectObj.skills = navigateFromJsonPaths(project, [
+      "required_skills.name",
+    ]);
+    projectObj.location = (navigateFromJsonPaths(project, ["locations"]) || []).join(", ");
+    projectObj.created_at = navigateFromJsonPaths(project, ["created_at"]);
+    projectObj.start_date = parseDate(
+      navigateFromJsonPaths(project, ["starting_date"])
+    );
+    projectObj.tags = parseTagsFromSkills(projectObj.skills);
+   
+    await checkAndSaveProject(client, projectObj);
+    
   }
 }
 

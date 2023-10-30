@@ -7,5 +7,5 @@ export function parseDate(dateString) {
     if (isNaN(month) || isNaN(year)) return null;
     return new Date(year, (month-1));
   }
-  return null;
+  return new Date(dateString);
 }
