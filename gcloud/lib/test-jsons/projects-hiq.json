@@ -1,0 +1,164 @@
+{
+  "componentChunkName": "component---src-page-definitions-partners-page-js",
+  "path": "/alihankintakumppanuudet/",
+  "result": {
+    "data": {
+      "contentfulPartnersPage": {
+        "fields": {
+          "path": "/alihankintakumppanuudet/"
+        },
+        "node_locale": "fi-FI",
+        "pageTeaserText": "Kumppanuudet",
+        "title": "Yhteistyö\\\\u00ADmahdollisuudet",
+        "preamble": {
+          "preamble": "Yhteistyökumppanuudet ovat kasvava osa liiketoimintaamme. Yhteistyössä panostamme pitkäaikaisiin kumppanuuksiin ja molemminpuoliseen luottamukseen.    "
+        },
+        "heroVideo": {
+          "webmVideo": {
+            "file": {
+              "url": "//videos.ctfassets.net/ixznnqunnz9a/6OWb4zaGs3dT5LHWD6saL3/a7aa3f3ce45e9979661a762af8bf1be5/HeaderLoop_Careers.webm",
+              "contentType": "video/webm"
+            }
+          },
+          "hevcVideo": {
+            "file": {
+              "url": "//videos.ctfassets.net/ixznnqunnz9a/5B5ZoqXRvBGvWwg4MJIavc/f5c4c7431303415fa8c7e8844969154b/HeaderLoop_Careers-hevc-safari.mp4",
+              "contentType": "video/mp4"
+            }
+          },
+          "poster": {
+            "description": "Poster image for the careers hero video",
+            "file": {
+              "url": "//images.ctfassets.net/ixznnqunnz9a/2w0wVw5uSiWQNNtjj35H5J/6c822cd438d7053a32b56460d9e1df74/HeaderLoop_Careers0.png"
+            }
+          }
+        },
+        "seoImage": {
+          "description": "",
+          "file": {
+            "url": "//images.ctfassets.net/ixznnqunnz9a/niWsKPkCFgbPt3ntROPrJ/4b853cf6a65652e8bf8c581f7de7c2c4/Partnerships.jpg"
+          }
+        },
+        "bodyText": {
+          "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Etsitkö uusia tuulia?\",\"nodeType\":\"text\"}],\"nodeType\":\"heading-3\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Haemme jatkuvasti verkostoomme uusia kumppanuuksia, jotka pystyvät toimittamaan meille ja asiakkaillemme alihankintana laadukkaita palveluja, oli sitten kyse sovelluskehityksestä, projektinhallinnasta tai laadunvarmistuksesta. Pystymme tarjoamaan mielenkiintoisia toimeksiantoja joko osana meidän projektitiimejämme tai asiantuntijapalveluna asiakkaillemme.\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Keskustelemme mielellämme yhteistyöstä eri kokoisten yritysten kanssa, olitpa sitten kokenut yrittäjä tai vasta taipaleesi alussa.\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[{\"type\":\"bold\"}],\"value\":\"Toimeksiannot suoraan sähköpostiin?\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Liity verkostoomme ja saat tiedon uusista toimeksiannoista suoraan sähköpostiisi. Saatamme olla sinuun yhteydessä kysyäksemme tarkemmin, millaisista toimeksiannoista olet kiinnostunut kuulemaan.\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"},{\"data\":{\"target\":{\"sys\":{\"id\":\"4cFPnfi9IwThQeT92G56Rw\",\"type\":\"Link\",\"linkType\":\"Entry\"}}},\"content\":[],\"nodeType\":\"embedded-entry-block\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}",
+          "references": [
+            {
+              "contentful_id": "4cFPnfi9IwThQeT92G56Rw",
+              "target": "https://share.hsforms.com/1WjtVBQTnQcWZS51PKjq63Q2c3nd",
+              "text": "Tilaa toimeksiannot",
+              "tab": "Same",
+              "style": "Small",
+              "sys": {
+                "contentType": {
+                  "sys": {
+                    "id": "linkBlock"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "partnersBlockTeaserText": "Liity tarinaamme",
+        "partnersBlockTitle": "Avoimet toimeksiannot",
+        "jobCategories": [
+          {
+            "id": "a3276513-ad28-54d5-acea-a97c483c178b",
+            "category": "Tech ",
+            "jobs": [
+              {
+                "id": "4d61ca78-7f3c-5022-bfbd-280dbf12acf6",
+                "title": "Software Developer",
+                "office": "Helsinki / hybrid",
+                "description": "HiQ etsii Software Developeria pitkäkestoiseen finanssialan asiakasprojektiin.",
+                "subContractPage": {
+                  "fields": {
+                    "path": "/alihankintakumppanuudet/software-developer/"
+                  }
+                }
+              },
+              {
+                "id": "cd59e4f8-57a9-5a8b-b94a-1e0971caca58",
+                "title": "Developer",
+                "office": "Helsinki tai Oulu / hybrid",
+                "description": "HiQ etsii Developeria finanssialan asiakasprojektiin.",
+                "subContractPage": {
+                  "fields": {
+                    "path": "/alihankintakumppanuudet/developer/"
+                  }
+                }
+              },
+              {
+                "id": "84a56727-dea5-5b8e-98aa-3e74188c7604",
+                "title": "Freelancer",
+                "office": "Hybrid",
+                "description": "Haemme kokeneita ohjelmistoalan ammattilaisia, joita kiinnostavat mielenkiintoiset projektit freelancerina.",
+                "subContractPage": {
+                  "fields": {
+                    "path": "/alihankintakumppanuudet/freelancer/"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "id": "22524ff4-7409-51ce-8f96-8b6cefa1cc8b",
+            "category": "Business",
+            "jobs": null
+          },
+          {
+            "id": "7e471d09-3854-5f8b-9156-bdc4204d1980",
+            "category": "Testaus",
+            "jobs": []
+          }
+        ],
+        "careersBlockTeaserText": "HiQ Finland",
+        "careersBlockTitle": "Avoimet kumppanuudet",
+        "contactForm": {
+          "formTypeId": ["Contact Form"],
+          "formTeaserText": "Contact",
+          "title": "Ota yhteyttä ja kysy lisää",
+          "contactPersons": [
+            {
+              "name": "Mika Kinnunen",
+              "title": "VP, Subcontracting",
+              "photo": {
+                "description": "",
+                "gatsbyImageData": {
+                  "images": {
+                    "sources": [
+                      {
+                        "srcSet": "https://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=190&h=126&q=80&fm=webp 190w,\nhttps://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=380&h=253&q=80&fm=webp 380w,\nhttps://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=760&h=506&q=80&fm=webp 760w",
+                        "sizes": "(min-width: 760px) 760px, 100vw",
+                        "type": "image/webp"
+                      }
+                    ],
+                    "fallback": {
+                      "src": "https://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=760&h=506&fl=progressive&q=80&fm=jpg",
+                      "srcSet": "https://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=190&h=126&fl=progressive&q=80&fm=jpg 190w,\nhttps://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=380&h=253&fl=progressive&q=80&fm=jpg 380w,\nhttps://images.ctfassets.net/ixznnqunnz9a/3ZevdasG3OuvkenoF9Y8NL/bb160501c6b99b0977bfe3b4a98518ac/Mika_K_019_2_760x506px.jpg?w=760&h=506&fl=progressive&q=80&fm=jpg 760w",
+                      "sizes": "(min-width: 760px) 760px, 100vw"
+                    }
+                  },
+                  "layout": "constrained",
+                  "width": 768,
+                  "height": 511
+                }
+              },
+              "email": "mika.kinnunen@hiq.fi",
+              "phone": "+358 45 111 0174",
+              "twitterLink": null,
+              "linkedInLink": "https://www.linkedin.com/in/mika-kinnunen-85b90890/"
+            }
+          ],
+          "displayForm": true
+        }
+      }
+    },
+    "pageContext": {
+      "locale": "fi-FI",
+      "id": "4e318587-4c38-50cf-b405-36fdc01a1ac5",
+      "finPath": "/alihankintakumppanuudet/",
+      "enPath": "/en/subcontracting/"
+    }
+  },
+  "staticQueryHashes": ["1147719565", "173460184", "2370480653", "4202924991"]
+}

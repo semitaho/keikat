@@ -12,9 +12,11 @@
   "type": "module",
   "scripts": {
     "watch": "npm-watch start",
-    "start": "npx functions-framework --target=updateGigs"
+    "start": "npx functions-framework --target=updateGigs",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "npm-watch": "^0.11.0"
   }
 }

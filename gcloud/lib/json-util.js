@@ -5,7 +5,14 @@ export function navigateFromJson(json, jsonPath) {
   let currentPosition = json;
   for (let path of paths) {
     if (Array.isArray(currentPosition)) {
-      currentPosition = currentPosition.map((item) => item[path]);
+      currentPosition = currentPosition
+        .filter((item) => item[path])
+        .flatMap((item) => {
+          if (Array.isArray(item[path])) {
+            return item[path];
+          }
+          return [item[path]];
+        });
     } else {
       currentPosition = currentPosition[path];
     }

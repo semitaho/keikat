@@ -1,0 +1,1708 @@
+{
+  "items": [
+    {
+      "id": "GG-24255",
+      "created_at": "2023-10-31T15:07:15.016Z",
+      "slug": "ux-painotteinen-frontend-kehittaja",
+      "title": "UX-painotteinen frontend-kehittäjä",
+      "description": "Tarve on osa tiimitarjousta liittyen  jatkuvan oppimisen digitaaliseen palvelukokonaisuuteen. Asiakas hakee yhteensä 4 kehittäjää tiimiin.\n\nJulkisen sektorin asiakkaamme etsii vahvalla visuaalisella silmällä varustettua  front-end velhoa, joka sujuvasti piirtää kauniita ja saavutettavia leiskoja, sekä kirjoittaa kaunista JavaScriptiä. \n\nTekijällä pitäisi olla kyky suunnitella ja toteuttaa saavutettavia käyttöliittymä. Lisäksi tekijällätulee olla taito koodata fronttitoteutusta ja käyttää myös suunnittelutyökaluja kuten Figmaa.\n\nHankkeessa kehitetään kokonaan uutta järjestelmää. Tiimin tekemisen tavoite on rakentaa palvelu tukemaan yksilön kehitystä ja uravalintoja. \n",
+      "proposal_deadline": "2023-11-08",
+      "required_skills": [
+        {
+          "id": 492,
+          "name": "JSON"
+        },
+        {
+          "id": 4839,
+          "name": "JavaScript"
+        },
+        {
+          "id": 7261,
+          "name": "TypeScript"
+        },
+        {
+          "id": 3252,
+          "name": "Web Content Accessibility Guidelines (WCAG)"
+        },
+        {
+          "id": 5839,
+          "name": "UX design"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 2065,
+          "name": "Vue.js"
+        },
+        {
+          "id": 1772,
+          "name": "Figma"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 4,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-10",
+      "estimated_customer_decision": "2023-11-15",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8000,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-40946",
+      "created_at": "2023-10-31T10:56:28.523Z",
+      "slug": "scrum-master",
+      "title": "Scrum Master",
+      "description": "Asiakkaamme etsii sairaanhoidollisten palveluiden laskutusjärjestelmän kehitystiimiä.\n\nScrum masterina toimivalta asiantuntijalta vaaditaan yleistietojen osalta nimi, tutkinto, kielitaito, sertifikaatit.\n\nPakollisina vaatimuksina \n- Voimassa oleva Professional Scrum Master -sertifiointi\n- Hyvä suomen kielen suullinen ja kirjallinen taito\n\nPisteytettävinä vatimuksina (tavoitellut maksimivaatimukset alla)\n- Scrum Masterina viidessä (5) tai enemmän ohjelmistokehitysprojekteissa ketterien kehitysmenetelmien mukaisesti\n- Scrum Masterina kahdessa (2) tai enemmän asiakas- tai organisaatiolaskutusjärjestelmän kehittämisprojektissa\n- Moniosaajatiimissä työskentelykokemusta 4 vuotta tai enemmän\n\nTyö alkaisi haltuunotolla 1-3/2023 aikana jonka jälkeen jatkuvaan kehitykseen uuden toimittajan toimesta 2025 loppuun asti.",
+      "proposal_deadline": "2023-11-10",
+      "required_skills": [
+        {
+          "id": 4644,
+          "name": "Scrum"
+        },
+        {
+          "id": 2184,
+          "name": "Scrum Master"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 3476,
+          "name": "Azure Active Directory (AD)"
+        },
+        {
+          "id": 1118,
+          "name": "Elisa CodeServer"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 1745,
+          "name": "GrayLog"
+        },
+        {
+          "id": 959,
+          "name": "Grafana"
+        },
+        {
+          "id": 5315,
+          "name": "hasura"
+        },
+        {
+          "id": 1867,
+          "name": "GraphQL"
+        },
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 1357,
+          "name": "Prometheus"
+        },
+        {
+          "id": 206,
+          "name": "RabbitMQ"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7041,
+          "name": "SonarQube"
+        },
+        {
+          "id": 4892,
+          "name": "Integrations"
+        },
+        {
+          "id": 1137,
+          "name": "SFTP"
+        },
+        {
+          "id": 1578,
+          "name": "Kubernetes"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 4,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-15",
+      "estimated_customer_decision": "2023-12-31",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-62131",
+      "created_at": "2023-10-31T08:58:01.832Z",
+      "slug": "senior-atex-hw-designer",
+      "title": "Senior ATEX HW Designer",
+      "description": "Our customer in Espoo is looking for an experienced ATEX HW Designer to support their ATEX HW Design team. Excellent knowledge in ATEX design on the top of good electronics design skills is of necessary. Design tools is PADS and work can be done at least partially remotely, but there's a need to visit customer premises in Espoo at least time-to-time.  ",
+      "proposal_deadline": "2023-11-03",
+      "required_skills": [
+        {
+          "id": 5715,
+          "name": "HW Development"
+        },
+        {
+          "id": 6465,
+          "name": "HW debug"
+        },
+        {
+          "id": 7285,
+          "name": "HW design specifications"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [],
+      "duration_days_min": 120,
+      "duration_days_max": 180,
+      "allocation_pct": 100,
+      "min_experience_years": 5,
+      "starting_date": "2023-11-15",
+      "end_customer_offer_deadline": "2023-11-03",
+      "estimated_customer_decision": "2023-11-08",
+      "hourly_rate_min_cents": 6000,
+      "hourly_rate_max_cents": 6500,
+      "onsite": false,
+      "locations": ["Helsinki"],
+      "published": true
+    },
+    {
+      "id": "GG-33819",
+      "created_at": "2023-10-31T08:26:33.176Z",
+      "slug": "kehittaja-x-4",
+      "title": "Kehittäjä x 4",
+      "description": "Julkishallinnon asiakkaamme etsii neljää sovelluskehittäjää osaksi tiimiä.\n\nKaikki mainitut osaamisvaatimukset on vähimmäisvaatimuksia.Toteutus liittyy  jatkuvaan oppimisen digitaaliseen palvelukokonaisuuteen ohjelmistokehitys vuosille 2023-2025.\n\nTämä rooli on sovelluskehittäjä, kaikkiaan tiimiin haetaan arviolta 6 (2 kpl koodaava sovellusarkkitehti + 4 kehittäjää). Kehittäjiä tarvitaan hankkeen vaiheistusten edetessä. Ensimmäisenä kehitysprojektissa aloittavat syyskuussa 2023 alkavalla 5kk suunnittelujaksolla kaksi koodaavaa sovellusarkkitehtia. Nämä koodaavat sovellusarkkitehdit jatkavat suunnittelujakson jälkeen osana kehitystiimiä, jossa arviolta joulukuussa aloittavat seuraavat neljä sovelluskehittäjää.",
+      "proposal_deadline": "2023-11-08",
+      "required_skills": [
+        {
+          "id": 492,
+          "name": "JSON"
+        },
+        {
+          "id": 887,
+          "name": "Kotlin"
+        },
+        {
+          "id": 2387,
+          "name": "Java Virtual Machine (JVM)"
+        },
+        {
+          "id": 2952,
+          "name": "GitHub Actions"
+        },
+        {
+          "id": 3463,
+          "name": "Microservices"
+        },
+        {
+          "id": 6975,
+          "name": "AWS Cloud Development Kit (CDK)"
+        },
+        {
+          "id": 6976,
+          "name": "AWS Relational Database Service (RDS)"
+        },
+        {
+          "id": 6978,
+          "name": "Amazon AWS"
+        },
+        {
+          "id": 6983,
+          "name": "Jira"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 7070,
+          "name": "Spring Boot"
+        },
+        {
+          "id": 7080,
+          "name": "Maven"
+        },
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 7261,
+          "name": "TypeScript"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 7,
+          "name": "Scala"
+        },
+        {
+          "id": 12,
+          "name": "Nginx"
+        },
+        {
+          "id": 19,
+          "name": "PostgreSQL"
+        },
+        {
+          "id": 148,
+          "name": "Spring Security"
+        },
+        {
+          "id": 652,
+          "name": "Docker"
+        },
+        {
+          "id": 959,
+          "name": "Grafana"
+        },
+        {
+          "id": 1029,
+          "name": "Bash"
+        },
+        {
+          "id": 1113,
+          "name": "AWS Lambda"
+        },
+        {
+          "id": 1357,
+          "name": "Prometheus"
+        },
+        {
+          "id": 1658,
+          "name": "OWASP"
+        },
+        {
+          "id": 2072,
+          "name": "Webpack"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 6765,
+          "name": "Node.js"
+        },
+        {
+          "id": 7130,
+          "name": "Test driven development (TDD)"
+        },
+        {
+          "id": 4406,
+          "name": "Single sign-on (SSO)"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 4,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-10",
+      "estimated_customer_decision": "2023-11-15",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-03117",
+      "created_at": "2023-10-31T08:17:15.282Z",
+      "slug": "java-kehittaja-x-4",
+      "title": "Java-kehittäjä x 4",
+      "description": "Asiakkaamme etsii sairaanhoidollisten palveluiden laskutusjärjestelmän kehitystiimiä.\n\nJava-kehittäjänä toimivalta asiantuntijalta vaaditaan yleistietojen osalta nimi, tutkinto, kielitaito, sertifikaatit.\n\nPakollisina vaatimuksina \n- Kehittänyt Microsoft Azure -pilvialustalle järjestelmää käyttäen joko Java 11 tai Java 17\n- Kokemusta Java Spring ohjelmoinnista\n- Kehittänyt mikropalveluarkkitehtuurin mukaista järjestelmää\n- Hyvä suomen kielen suullinen ja kirjallinen taito\n\nPisteytettävinä vatimuksina (tavoitellut maksimivaatimukset alla)\n- kokemusta Azure Kubernetes Service (AKS) ja Azure Pipelines -teknologioista.\t(>=4 vuotta)\n- työkokemusta  Java-kehittäjänä toimimisesta terveydenhuollon asiakas- tai organisaatiolaskutusjärjestelmän kehittämisprojekteissa. (>=2kpl)\n- työkokemusta Java-kehittäjänä toimimisesta projektissa, jonka kehitystyö toteutettiin ketterien kehittämismenetelmien mukaisesti. (>=5kpl)\n- työkokemusta projektista, jossa käsiteltiin FHIR-sanomastandardin mukaisia sanomia. (>=5kpl)\n\nTyö alkaisi haltuunotolla 1-3/2023 aikana jonka jälkeen jatkuvaan kehitykseen uuden toimittajan toimesta 2025 loppuun asti.",
+      "proposal_deadline": "2023-11-10",
+      "required_skills": [
+        {
+          "id": 4644,
+          "name": "Scrum"
+        },
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 7377,
+          "name": "FHIR"
+        },
+        {
+          "id": 2327,
+          "name": "Health care"
+        },
+        {
+          "id": 149,
+          "name": "Spring Framework"
+        },
+        {
+          "id": 3078,
+          "name": "Azure Kubernetes Service (AKS)"
+        },
+        {
+          "id": 4277,
+          "name": "Azure Pipelines"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 3476,
+          "name": "Azure Active Directory (AD)"
+        },
+        {
+          "id": 1118,
+          "name": "Elisa CodeServer"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 1745,
+          "name": "GrayLog"
+        },
+        {
+          "id": 959,
+          "name": "Grafana"
+        },
+        {
+          "id": 5315,
+          "name": "hasura"
+        },
+        {
+          "id": 1867,
+          "name": "GraphQL"
+        },
+        {
+          "id": 1357,
+          "name": "Prometheus"
+        },
+        {
+          "id": 206,
+          "name": "RabbitMQ"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7041,
+          "name": "SonarQube"
+        },
+        {
+          "id": 1137,
+          "name": "SFTP"
+        },
+        {
+          "id": 1578,
+          "name": "Kubernetes"
+        },
+        {
+          "id": 4839,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 2159,
+          "name": "ERP"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 4,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-15",
+      "estimated_customer_decision": "2023-12-31",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-55609",
+      "created_at": "2023-10-31T08:14:34.142Z",
+      "slug": "fullstack-kehittaja-x-2",
+      "title": "Fullstack-kehittäjä x 2",
+      "description": "Asiakkaamme etsii sairaanhoidollisten palveluiden laskutusjärjestelmän kehitystiimiä.\n\nFullstack-kehittäjänä toimivalta asiantuntijalta vaaditaan yleistietojen osalta nimi, tutkinto, kielitaito, sertifikaatit.\n\nPakollisina vaatimuksina \n- Kehittänyt Microsoft Azure -pilvialustalle järjestelmää käyttäen joko Java 11 tai Java 17ohjelmistokieliä\n- Java Spring\n- React\n- Kehittänyt mikropalveluarkkitehtuurin mukaista järjestelmää\n- Hyvä suomen kielen suullinen ja kirjallinen taito\n\nPisteytettävinä vatimuksina (tavoitellut maksimivaatimukset alla)\n- kokemusta Azure Kubernetes Service (AKS) ja Azure Pipelines -teknologioista. (yli 4vuotta)\n- työkokemusta FullStack-kehittäjänä toimimisesta terveydenhuollon asiakas- tai organisaatiolaskutusjärjestelmän kehittämisprojekteissa.\t(2kpl tai enemmän)\n- työkokemusta FullStack-kehittäjänä toimimisesta projektissa, jonka kehitystyö toteutettiin ketterien kehittämismenetelmien mukaisesti. (5kpl tai enemmän)\n- työkokemusta projektista, jossa käsiteltiin FHIR-sanomastandardin mukaisia sanomia. (5kpl tai enemmän)\n- työkokemusta projektista, jossa käytettettiin Graphql-kieltä. (5kpl tai enemmän)\n- työkokemusta projektista, jossa hyödynnettiin Hasura- teknologiaa. (5kpl tai enemmän)\n\nTyö alkaisi haltuunotolla 1-3/2024 aikana jonka jälkeen jatkuvaan kehitykseen uuden toimittajan toimesta 2025 loppuun asti.\n",
+      "proposal_deadline": "2023-11-10",
+      "required_skills": [
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 7377,
+          "name": "FHIR"
+        },
+        {
+          "id": 2327,
+          "name": "Health care"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 149,
+          "name": "Spring Framework"
+        },
+        {
+          "id": 3078,
+          "name": "Azure Kubernetes Service (AKS)"
+        },
+        {
+          "id": 4277,
+          "name": "Azure Pipelines"
+        },
+        {
+          "id": 1867,
+          "name": "GraphQL"
+        },
+        {
+          "id": 5315,
+          "name": "hasura"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7041,
+          "name": "SonarQube"
+        },
+        {
+          "id": 1137,
+          "name": "SFTP"
+        },
+        {
+          "id": 1578,
+          "name": "Kubernetes"
+        },
+        {
+          "id": 4839,
+          "name": "JavaScript"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 2159,
+          "name": "ERP"
+        },
+        {
+          "id": 1118,
+          "name": "Elisa CodeServer"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 4,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-30",
+      "estimated_customer_decision": "2023-12-31",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-89407",
+      "created_at": "2023-10-31T08:12:50.035Z",
+      "slug": "sovellusarkkitehti",
+      "title": "Sovellusarkkitehti",
+      "description": "Asiakkaamme etsii sairaanhoidollisten palveluiden laskutusjärjestelmän kehitystiimiä.\n\nOhjelmistoarkkitehtinä toimivalta asiantuntijalta vaaditaan yleistietojen osalta nimi, tutkinto, kielitaito, sertifikaatit.\n\nPakollisina vaatimuksina \n- vähintään kahden (2) vuoden työkokemus Azure pilvipalveluun toteutetun tietojärjestelmän suunnittelusta ja toteutuksesta\t\n- kokemusta IBM ODM-sääntökonejärjestelmästä vähintään yhdessä (1) projektissa.\t\n- kokemusta mikropalveluarkkitehtuurilla toteutetusta järjestelmästä vähintään yhdessä (1) projektissa.\t\n- Hyvä suomen kielen suullinen ja kirjallinen taito.\t\n\nPisteytettävinä vatimuksina (tavoitellut maksimivaatimukset alla)\n- työkokemus sovellusarkkitehtityöstä Microsoftin teknologioilla. (4 vuotta tai enemmän)\n- työkokemus Sovellusarkkitehtinä toimimisesta terveydenhuollon asiakas- tai organisaatiolaskutusjärjestelmän kehittämisprojekteissa.\t(2kpl tai enemmän)\n- työkokemusta Sovellusarkkitehtinä toimimisesta projektissa,joka toteutettiin kehitystyöstä ketterien kehittämismenetelmien mukaisesti. (5 kpl tai enemmän)\n- kokemusta sovellusarkkitehtiroolissa HL7 FHIR standardin mukaisten tietojen käsittelemisestä tietojärjestelmässä.\t(4 vuotta tai enemmän)\n- kokemusta PostgreSQL tietokannoista. ( 4 vuotta tai enemmän)\n\nTyö alkaisi haltuunotolla 1-3/2023 aikana jonka jälkeen jatkuvaan kehitykseen uuden toimittajan toimesta 2025 loppuun asti.",
+      "proposal_deadline": "2023-11-10",
+      "required_skills": [
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 7377,
+          "name": "FHIR"
+        },
+        {
+          "id": 4892,
+          "name": "Integrations"
+        },
+        {
+          "id": 2327,
+          "name": "Health care"
+        },
+        {
+          "id": 1767,
+          "name": "Software Architecture"
+        },
+        {
+          "id": 4840,
+          "name": "HL7"
+        },
+        {
+          "id": 19,
+          "name": "PostgreSQL"
+        },
+        {
+          "id": 7539,
+          "name": "IBM ODM (Operation decision manager)"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 3476,
+          "name": "Azure Active Directory (AD)"
+        },
+        {
+          "id": 1118,
+          "name": "Elisa CodeServer"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 1745,
+          "name": "GrayLog"
+        },
+        {
+          "id": 959,
+          "name": "Grafana"
+        },
+        {
+          "id": 5315,
+          "name": "hasura"
+        },
+        {
+          "id": 1867,
+          "name": "GraphQL"
+        },
+        {
+          "id": 1357,
+          "name": "Prometheus"
+        },
+        {
+          "id": 206,
+          "name": "RabbitMQ"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7041,
+          "name": "SonarQube"
+        },
+        {
+          "id": 1137,
+          "name": "SFTP"
+        },
+        {
+          "id": 1578,
+          "name": "Kubernetes"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 2159,
+          "name": "ERP"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 4,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-15",
+      "estimated_customer_decision": "2023-12-31",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-84041",
+      "created_at": "2023-10-31T08:07:50.078Z",
+      "slug": "ui-kehittaja-x-2",
+      "title": "UI-kehittäjä x 2",
+      "description": "Asiakkaamme etsii sairaanhoidollisten palveluiden laskutusjärjestelmän kehitystiimiä.\n\nPakollisina vaatimuksina \n- Vähintään 2v kokemus UI-kehittämisestä\n- Vähintään 2 projektissa jossa React-käyttöliittymäkehitystä ja suunnittelua\n- Vähintään 2 projektissa jossa käyttöliittymäkehitysä JavaScript/TypeScript-ohjelmointikielillä\n- kokemusta mikropalveluarkkitehtuurilla toteutetusta järjestelmästä vähintään yhdessä (1) projektissa\n- Hyvä suomen kielen suullinen ja kirjallinen taito\n\nPisteytettävinä vatimuksina (tavoitellut maksimivaatimukset alla)\n- Työkokemus (2) tai enemmän asiakas- tai organisaatiolaskutusjärjestelmän kehittämisprojektissa\n- Työkokemus viidessä (5) tai enemmän projekteissa ketterien kehitysmenetelmien mukaisesti\n- Työkokemus viidessä (5) tai enemmän projektissa jossa käsitelty FHIR-sanomastandardia\n- Työkokemus viidessä (5) tai enemmän projektissa jossa käytetty GraphQL-kieltä\n- Työkokemus viidessä (5) tai enemmän projektissa jossa käytetty Hasura-teknologiaa\n\nTyö alkaisi haltuunotolla 1-3/2023 aikana jonka jälkeen jatkuvaan kehitykseen uuden toimittajan toimesta 2025 loppuun asti.",
+      "proposal_deadline": "2023-11-10",
+      "required_skills": [
+        {
+          "id": 7377,
+          "name": "FHIR"
+        },
+        {
+          "id": 4892,
+          "name": "Integrations"
+        },
+        {
+          "id": 2327,
+          "name": "Health care"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 7261,
+          "name": "TypeScript"
+        },
+        {
+          "id": 4839,
+          "name": "JavaScript"
+        },
+        {
+          "id": 4644,
+          "name": "Scrum"
+        },
+        {
+          "id": 5315,
+          "name": "hasura"
+        },
+        {
+          "id": 1867,
+          "name": "GraphQL"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 3476,
+          "name": "Azure Active Directory (AD)"
+        },
+        {
+          "id": 1118,
+          "name": "Elisa CodeServer"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 1745,
+          "name": "GrayLog"
+        },
+        {
+          "id": 959,
+          "name": "Grafana"
+        },
+        {
+          "id": 1357,
+          "name": "Prometheus"
+        },
+        {
+          "id": 206,
+          "name": "RabbitMQ"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7041,
+          "name": "SonarQube"
+        },
+        {
+          "id": 1137,
+          "name": "SFTP"
+        },
+        {
+          "id": 1578,
+          "name": "Kubernetes"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 2159,
+          "name": "ERP"
+        },
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 7123,
+          "name": "Java"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 2,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-15",
+      "estimated_customer_decision": "2023-12-31",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-03369",
+      "created_at": "2023-10-31T08:05:59.510Z",
+      "slug": "release-manager",
+      "title": "Release manager",
+      "description": "Asiakkaamme etsii sairaanhoidollisten palveluiden laskutusjärjestelmän kehitystiimiä\n\nRelease managerina toimivalta asiantuntijalta vaaditaan yleistietojen osalta nimi, tutkinto, kielitaito, sertifikaatit.\n\nPakollisina vaatimuksina \n- Vähintään kahden (2) vuoden työkokemus julkaisutoiminnan automatisoinnin kehittämisestä, koordioinnista, viestinnästä ja riippuvuuksien hallinnasta\n- Vähintään kahden (2) vuoden kokemus Git-versionhanllintajärjestelmästä\n- Vähintään kahden (2) vuoden työkokemus julkaisujen koostamisesta\n- Hyvä suomen kielen suullinen ja kirjallinen taito\n\nPisteytettävinä vatimuksina (tavoitellut maksimivaatimukset alla)\n- työkokemusta Release Managerina toimimisesta asiakas- tai organisaatiolaskutusjärjestelmän kehittämisprojekteissa. (2kpl tai enemmän)\n- työkokemusta Release Managerina toimimisesta moniosaajatiimissä. (5kpl tai enemmän)\n\nTyö alkaisi haltuunotolla 1-3/2023 aikana jonka jälkeen jatkuvaan kehitykseen uuden toimittajan toimesta 2025 loppuun asti.\n",
+      "proposal_deadline": "2023-11-11",
+      "required_skills": [
+        {
+          "id": 4644,
+          "name": "Scrum"
+        },
+        {
+          "id": 2184,
+          "name": "Scrum Master"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 1240,
+          "name": "Julkaisunhallinta"
+        },
+        {
+          "id": 1030,
+          "name": "Continuous Delivery / Deployment"
+        },
+        {
+          "id": 6430,
+          "name": "julkaisusuunnittelu"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 4892,
+          "name": "Integrations"
+        }
+      ],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 50,
+      "min_experience_years": 2,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-15",
+      "estimated_customer_decision": "2023-12-31",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8300,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-83238",
+      "created_at": "2023-10-30T11:23:00.513Z",
+      "slug": "sap-data-asiantuntija",
+      "title": "SAP Data-asiantuntija",
+      "description": "Haemme vähittäiskaupan asiakkuuteemme SAP data-asiantuntijaa testidatan luomiseen. Testidataa luodaan sekä testiautomaation, että manuaalitestauksen tueksi ja data kerätään SAP ERP-järjestelmästä. Tärkeää, että asiantuntija ymmärtää SAP:in datan rakennetta ja sen miten kerätään parhaiten kyseiseen testitapaukseen sopiva data. SAP-osaaminen on tässä roolissa välttämätöntä. \n\nAsiantuntija tulee työskentelemään osana Goforen asiakastiimiä, joten hyvä tuki Gofore-kollegoilta on taattu. Tiimissä työskentelee useampi testauksen ammattilainen. Kyseessä on merkittävä ja Suomen kokoluokassa erittäin iso SAP-hanke. \n\nTyössä olisi hyvä voida käydä asiakkaan luona Vallilassa parina päivänä viikossa. ",
+      "proposal_deadline": "2023-11-03",
+      "required_skills": [
+        {
+          "id": 284,
+          "name": "Database design"
+        },
+        {
+          "id": 7156,
+          "name": "test data planning"
+        },
+        {
+          "id": 2661,
+          "name": "SAP ERP"
+        }
+      ],
+      "nice_to_have_skills": [
+        {
+          "id": 5790,
+          "name": "Test Automation"
+        }
+      ],
+      "languages": [],
+      "duration_days_min": 120,
+      "duration_days_max": 180,
+      "allocation_pct": 100,
+      "min_experience_years": 2,
+      "starting_date": "2023-12-01",
+      "end_customer_offer_deadline": "2023-11-24",
+      "estimated_customer_decision": "2023-11-30",
+      "hourly_rate_min_cents": 6500,
+      "hourly_rate_max_cents": 8800,
+      "onsite": true,
+      "locations": ["Helsinki"],
+      "published": true
+    },
+    {
+      "id": "GG-85007",
+      "created_at": "2023-10-30T08:22:01.915Z",
+      "slug": "sr-sw-developer-fullstack-data-engineer",
+      "title": "SR SW Developer/ Fullstack Data Engineer",
+      "description": "\nOur energy sector customer is looking for a Full Stack Data Engineer with experience on building cyber security solutions to join our SOC Data Platforms team. Data Platforms teams are a part of a larger Data Management team that helps our internal customers to develop and operate our data related services such as data lakes, warehouses, and visualization applications in modern cloud environment using the latest technology and methodology. \n\nAs you first project you would be working in an international cross-functional agile team developing digital solutions to optimize SOC platform solution. The tools are present in AWS and Azure with solutions based on Terraform, S3 buckets and lambda functions and Microsoft Sentinel, Log Stash and Log Analytics.\n\nWe look for an engineer that can work independently after a brief introduction to the overall architecture and the technical solutions.\n\nCompetence areas in order of importance: AWS (S3, SNS, SQS, EC2, NLB), Azure (Log Analytics, KQL, Sentinel, EventHub, Functions), Terraform, Python, Logstash, Ansible, Snowflake, Bash, GitHub Actions, Packer, Git.\n\nResponsibilities:\n\n-Design and implement data solutions, pipelines, visualization, and infrastructure defined in the product backlogs\n-Identify, design and implement internal process improvements\n-Review the work of other data engineers\n-Transforms complicated business problems into data pipelines\n-Contributes to the development, operation and architectural design of complex data platforms\n-Take an active role in supporting Junior Data Engineers in their career path\n-Actively finds ways to learn from team members and stakeholders, and shares knowledge beneficial to the team\n\nRequirements:\n-B.Sc. or M.Sc. degree in Computer Science, Engineering, Mathematics, or a related field, or comparable skills\n-Hands on experience with cloud platforms (AWS, Azure, or GCP) and data application development with Python\n-Understanding agile software processes, data-driven development, and data security concepts\n-Highly motivated and proactive mentality towards responsibilities\n\nWillingness and ability to learn more and grow in the role and beyond\nStrong communication and presentation skills in English (written and oral)\nWell-organized and structured working style\n\nAbility to travel to Helsinki office is a plus",
+      "proposal_deadline": "2023-11-02",
+      "required_skills": [
+        {
+          "id": 6978,
+          "name": "Amazon AWS"
+        },
+        {
+          "id": 7077,
+          "name": "AWS S3"
+        },
+        {
+          "id": 336,
+          "name": "AWS Simple Notification Service (SNS)"
+        },
+        {
+          "id": 7083,
+          "name": "AWS Simple Queue Service (SQS)"
+        },
+        {
+          "id": 7097,
+          "name": "AWS EC2"
+        },
+        {
+          "id": 6221,
+          "name": "AWS NLB"
+        },
+        {
+          "id": 5011,
+          "name": "Microsoft Azure"
+        },
+        {
+          "id": 3103,
+          "name": "Azure Log Analytics"
+        },
+        {
+          "id": 3158,
+          "name": "Microsoft Sentinel"
+        },
+        {
+          "id": 2143,
+          "name": "Azure Event Hubs"
+        },
+        {
+          "id": 1638,
+          "name": "Azure Functions"
+        },
+        {
+          "id": 964,
+          "name": "HashiCorp Terraform"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 323,
+          "name": "Logstash"
+        },
+        {
+          "id": 75,
+          "name": "Ansible"
+        },
+        {
+          "id": 2829,
+          "name": "Snowflake"
+        },
+        {
+          "id": 1029,
+          "name": "Bash"
+        },
+        {
+          "id": 2952,
+          "name": "GitHub Actions"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 233,
+          "name": "HashiCorp Packer"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [],
+      "duration_days_min": 60,
+      "duration_days_max": 120,
+      "allocation_pct": 100,
+      "min_experience_years": 6,
+      "starting_date": "2023-11-20",
+      "end_customer_offer_deadline": "2023-11-03",
+      "estimated_customer_decision": "2023-11-10",
+      "hourly_rate_min_cents": 8000,
+      "hourly_rate_max_cents": 8500,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-99616",
+      "created_at": "2023-10-27T06:49:11.006Z",
+      "slug": "maarittelija",
+      "title": "Määrittelijä",
+      "description": "Kehitysprojektissa on tavoitteena korvata nykyisiä tukipalveluita. Osa tukipalveluista ovat kriittisiä asiakkaan palveluille, ja niissä esiintyvät häiriöt voivat aiheuttaa tuotantokatkoja. Projekti toteutetaan scrum-menetelmää soveltaen.\n\nPakolliset vaatimukset:\n- työkokemusta teknisen määrittelijän tehtävistä päätoimisesti yhteensä vähintään kuudenkymmenen (60) kuukauden ajalta. Kokemuksesta kaksikymmentäneljä (24) kuukautta tulee olla kertynyt viimeisten kolmen vuoden ajalta. \n- kokemusta laajojen, integraatiota sekä automaattista käsittelyä sisältävien tietojärjestelmien määrittelystä sekä suurien massojen tietojenkäsittelyn määrittelystä.\n- vähintään kolmen (3) vuoden työkokemus ketterästä kehittämisestä, työskentelystä ketterän kehittämisen tiimissä sekä ketterien toimintamallien soveltamisesta käytännössä.\n- hyvä suomen kielen puhuttu ja kirjoitettu taito.\n\nPisteytettävät vaatimukset:\n- min 8 vuotta työkokemusta teknisenä määrittelijänä työskentelystä.\n- SQL\n- Mikropalveluarkkitehtuuri\n- Tieto- ja käsitemallinnuksesta\n- Käyttäjätarinoiden kirjoittamisesta\n\nHankittava teknisen määrittelijän- roolin asiantuntijapalvelu pitää sisällään seuraavanlaisia \ntyötehtäviä:\n• osallistuminen tieto- ja käsitemallinnukseen\n• nykytoteutukseen ja dokumentaatioon perehtymistä\n• osallistuminen käyttäjätarinoiden ja/tai käyttötapausten, rajapintojen, \nkonversiokuvausten ja muiden määrittelydokumenttien kirjoittamiseen\nHankinnan kohteen kuvaus 2 (2)\n• tiedon analysointia ja jatkojalostusmäärittelyä",
+      "proposal_deadline": "2023-11-03",
+      "required_skills": [
+        {
+          "id": 3463,
+          "name": "Microservices"
+        },
+        {
+          "id": 586,
+          "name": "SQL"
+        },
+        {
+          "id": 6499,
+          "name": "Information modeling"
+        },
+        {
+          "id": 377,
+          "name": "Conceptual, logical and physical data modelling"
+        },
+        {
+          "id": 4950,
+          "name": "Use case scenarios"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 5,
+      "starting_date": "2024-01-02",
+      "end_customer_offer_deadline": "2023-11-07",
+      "estimated_customer_decision": "2023-11-21",
+      "hourly_rate_min_cents": 7000,
+      "hourly_rate_max_cents": 8000,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-81190",
+      "created_at": "2023-10-27T06:47:32.284Z",
+      "slug": "sovelluskehittaja-java-x-2",
+      "title": "Sovelluskehittäjä, Java x 2",
+      "description": "Kehitysprojektissa on tavoitteena korvata nykyisiä tukipalveluita. Osa tukipalveluista ovat kriittisiä asiakkaan palveluille, ja niissä esiintyvät häiriöt voivat aiheuttaa tuotantokatkoja. Projekti toteutetaan scrum-menetelmää soveltaen.\n\nPakolliset vaatimukset:\n- kokemusta Java-sovelluskehittäjän tai -sovellusarkkitehdin tehtävistä päätoimisesti yhteensä vähintään kuudenkymmenen (60) kuukauden ajalta. Kokemuksesta kolmekymmentäkuusi (36) kuukautta tulee olla kertynyt viimeisten neljän vuoden ajalta.\n- hyvä suomen kielen puhuttu ja kirjoitettu taito.\n- työkokemusta mikropalveluarkkitehtuureista yhteensä (toimeksiantojen yhteenlaskettu kesto) vähintään 24 kuukauden ajalta.\n- työkokemusta testiautomaation toteutuksesta (toimeksantojen yhteenlaskettu kesto) vähintään 12 kuukauden ajalta.\n\nPisteytettävät vaatimukset:\n- työkokemus mikropalveluarkkitehtuurin ja kontitettujen järjestelmien suunnittelusta\n- työkokemus sovellusalustamigraatioista ja sovellusmigraatioista\n- työkokemus testiautomaation toteutuksesta\n- työkokemus järjestelmän suunnittelu-, toteutus- ja ylläpitotyö osana ketterää tiimiä \n- Spring Boot\n- REST\n- JSON\n- OpenShift\n- Robot Framework\n- 3Scale\n- IBM MQ\n- Tekton\n- RH-SSO\n- React\n- JPA\n- PostgreSQL\n- Sonar\n- Nexus\n- Gradle\n- Git\n- Helm\n- Elasticsearch\n- Dynatrace\n- ArgoCD\n\nHankittavat Java-sovelluskehittäjäasiantuntijapalvelut pitävät sisällään seuraavanlaisia työtehtäviä: \n- mikropalveluarkkitehtuurin ja kontitettujen järjestelmien suunnittelua \n- sovellusalustamigraatioita ja sovellusmigraatioita \n- käyttöliittymäkehitystä \n- automaatiotestausta \n- ketterässä scrum-tiimissä toimimista \n- tietojärjestelmien suunnittelu- ja toteutustyötä \n- yksikkötestausta ",
+      "proposal_deadline": "2023-11-03",
+      "required_skills": [
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 7070,
+          "name": "Spring Boot"
+        },
+        {
+          "id": 4921,
+          "name": "REST API"
+        },
+        {
+          "id": 492,
+          "name": "JSON"
+        },
+        {
+          "id": 1443,
+          "name": "OpenShift"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7185,
+          "name": "3scale API Management"
+        },
+        {
+          "id": 553,
+          "name": "IBM MQ"
+        },
+        {
+          "id": 5930,
+          "name": "Tekton"
+        },
+        {
+          "id": 4406,
+          "name": "Single sign-on (SSO)"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 7069,
+          "name": "JPA"
+        },
+        {
+          "id": 19,
+          "name": "PostgreSQL"
+        },
+        {
+          "id": 1663,
+          "name": "Sonar"
+        },
+        {
+          "id": 655,
+          "name": "Nexus"
+        },
+        {
+          "id": 115,
+          "name": "Gradle"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 2368,
+          "name": "Helm"
+        },
+        {
+          "id": 7093,
+          "name": "Elasticsearch"
+        },
+        {
+          "id": 2389,
+          "name": "Dynatrace"
+        },
+        {
+          "id": 4907,
+          "name": "Argo CD"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 5,
+      "starting_date": "2024-01-02",
+      "end_customer_offer_deadline": "2023-11-07",
+      "estimated_customer_decision": "2023-11-21",
+      "hourly_rate_min_cents": 7000,
+      "hourly_rate_max_cents": 8000,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-80499",
+      "created_at": "2023-10-27T06:44:45.798Z",
+      "slug": "sovelluskehittaja-java",
+      "title": "Sovelluskehittäjä ( Java)",
+      "description": "Hankittavan asiantuntijapalvelut liittyvät IT-tietoyksikön tiedonvälityksen ryhmien ylläpito- ja kehitystehtävien toteuttamiseen. Työ sijoittuu suurimmilta osin uuden tietojenvaihdon kehittämiseen. Hankittava asiantuntija tulee ensisijaisesti sijoittumaan yhteistyökumppaneiden tietojenvaihdon kehittämisestä vastaavaan tiimin tehtäväkenttään, mutta tiimit voivat myös vaihtua työtehtävien mukaisesti. \n\nYhteistyökumppaneiden tietojenvaihto tarjoaa rajapinnan asiakkaan ja kuntien & hyvinvointialueiden väliseen yhteistyöhön. Tietojenvaihtoa tehdään nykytilassa Kelmu-nimisen palvelun kautta. Tätä palvelua ollaan uudistamassa uusien teknologioiden ja parhaita käytäntöjä toteuttavaksi uudeksi palveluksi.\nTyötehtävät liittyvät pääsääntöisesti kehittämiseen & ylläpitoon. Palvelu on laajasti integroitunut eri järjestelmiin. Nämä järjestelmät on toteutettu sekä uudemmilla että vanhemmilla teknologioilla. Tehtävässä on tarpeen laaja-alainen Java-tuntemus ja integraatio-osaaminen\n\nPakolliset vaatimukset:\n-  kokemusta Java-sovelluskehittäjän tai -sovellusarkkitehdin tehtävistä päätoimisesti yhteensä vähintään kuudenkymmenen (60) kuukauden ajalta. Kokemuksesta kolmekymmentäkuusi (36) kuukautta tulee olla kertynyt viimeisten neljän vuoden ajalta.\n- työkokemusta mikropalveluarkkitehtuureista yhteensä (toimeksiantojen yhteenlaskettu kesto) vähintään 36 kuukauden ajalta. \n- hyvä suomen kielen puhuttu ja kirjoitettu taito.\n\n\nPisteytettävät vaatimukset:\n- työkokemus mikropalveluarkkitehtuurin ja kontitettujen järjestelmien suunnittelusta\n- työkokemus sovellusalustamigraatioista ja sovellusmigraatioista\n- työkokemus tietovarastointiratkaisuista\n- työkokemus järjestelmän suunnittelu-, toteutus- ja ylläpitotyö osana ketterää tiimiä \n- OpenShift\n- Spring Boot\n- Spring Batch\n- 3Scale\n- REST\n- JSON\n- Java SE\n- kokemusta Robot Framework –testitapauksien koodauksesta\n- IBM WLP/WAS\n- RH SSO\n- IBM MQ\n- React\n- EJB 2\n- JPA\n- DB2\n- PostgreSQL\n- Oracle\n- Redis\n- Elastic Search\n- NodeJs\n- Javascript\n- Gradle\n- Dynatrace\n- S3\n- Nexus\n- Sonar\n- OpenApi\n- Python\n- Git\n- Tekton\n- Argo CD\n- Helm\n- Sharepoint\n- ClamAv\n- työkokemusta DB2 --> PostgreSQL-migraatioista\n- tuntemusta keskuskoneesta karkealla tasolla (z/Os, DB2, TSO, CICS, PL/1)\n- työkokemusta CICS-moduulien konversiosta\n- kokemusta dokumenttien AI-pohjaisesta käsittelystä arkistokelpoiseen muotoon\n- kokemusta asiakirjojen ja työjonojen hallintajärjestelmistä\n- kokemusta Grafana ja Prometheus -valvontatyökalujen konfiguroinnista  OpenShift-ympäristössä\n- työkokemusta hyvinvointialueisiin (HVA) liittyvistä tietojärjestelmistä\n- kokemusta Kibana-lokitustyökalun konfiguroinnista  OpenShift-ympäristössä",
+      "proposal_deadline": "2023-11-07",
+      "required_skills": [
+        {
+          "id": 3463,
+          "name": "Microservices"
+        },
+        {
+          "id": 2501,
+          "name": "Data migration"
+        },
+        {
+          "id": 1443,
+          "name": "OpenShift"
+        },
+        {
+          "id": 7070,
+          "name": "Spring Boot"
+        },
+        {
+          "id": 542,
+          "name": "Spring Batch"
+        },
+        {
+          "id": 7185,
+          "name": "3scale API Management"
+        },
+        {
+          "id": 4921,
+          "name": "REST API"
+        },
+        {
+          "id": 492,
+          "name": "JSON"
+        },
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 4099,
+          "name": "IBM Websphere"
+        },
+        {
+          "id": 4406,
+          "name": "Single sign-on (SSO)"
+        },
+        {
+          "id": 553,
+          "name": "IBM MQ"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 7092,
+          "name": "EJB"
+        },
+        {
+          "id": 7069,
+          "name": "JPA"
+        },
+        {
+          "id": 1089,
+          "name": "DB2"
+        },
+        {
+          "id": 19,
+          "name": "PostgreSQL"
+        },
+        {
+          "id": 22,
+          "name": "Redis"
+        },
+        {
+          "id": 7093,
+          "name": "Elasticsearch"
+        },
+        {
+          "id": 6765,
+          "name": "Node.js"
+        },
+        {
+          "id": 4839,
+          "name": "JavaScript"
+        },
+        {
+          "id": 115,
+          "name": "Gradle"
+        },
+        {
+          "id": 2389,
+          "name": "Dynatrace"
+        },
+        {
+          "id": 7077,
+          "name": "AWS S3"
+        },
+        {
+          "id": 655,
+          "name": "Nexus"
+        },
+        {
+          "id": 1663,
+          "name": "Sonar"
+        },
+        {
+          "id": 3015,
+          "name": "OpenAPI"
+        },
+        {
+          "id": 5937,
+          "name": "Python"
+        },
+        {
+          "id": 5930,
+          "name": "Tekton"
+        },
+        {
+          "id": 4907,
+          "name": "Argo CD"
+        },
+        {
+          "id": 2368,
+          "name": "Helm"
+        },
+        {
+          "id": 7257,
+          "name": "Microsoft SharePoint"
+        },
+        {
+          "id": 155,
+          "name": "ClamAV"
+        },
+        {
+          "id": 4565,
+          "name": "Mainframe"
+        },
+        {
+          "id": 1764,
+          "name": "Artificial Intelligence"
+        },
+        {
+          "id": 959,
+          "name": "Grafana"
+        },
+        {
+          "id": 1357,
+          "name": "Prometheus"
+        },
+        {
+          "id": 325,
+          "name": "Kibana"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 5,
+      "starting_date": "2024-01-02",
+      "end_customer_offer_deadline": "2023-11-09",
+      "estimated_customer_decision": "2023-11-23",
+      "hourly_rate_min_cents": 7000,
+      "hourly_rate_max_cents": 8000,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-50802",
+      "created_at": "2023-10-27T06:30:30.819Z",
+      "slug": "sovelluskehittaja-java-x-3",
+      "title": "Sovelluskehittäjä (Java)  x 3",
+      "description": "Kehitysprojektissa on tavoitteena korvata nykyisiä tukipalveluita. Osa tukipalveluista ovat kriittisiä asiakkaan tuottamille palveluille, ja niissä esiintyvät häiriöt voivat aiheuttaa tuotantokatkoja. Projekti toteutetaan scrum-menetelmää soveltaen.\n\nPakolliset vaatimukset:\n- kokemusta Java-sovelluskehittäjän tai -sovellusarkkitehdin tehtävistä päätoimisesti yhteensä vähintään kuudenkymmenen (60) kuukauden ajalta. Kokemuksesta kolmekymmentäkuusi (36) kuukautta tulee olla kertynyt viimeisten neljän vuoden ajalta.\n- hyvä suomen kielen puhuttu ja kirjoitettu taito.\n- työkokemusta mikropalveluarkkitehtuureista yhteensä (toimeksiantojen yhteenlaskettu kesto) vähintään 24 kuukauden ajalta.\n- työkokemusta testiautomaation toteutuksesta (toimeksantojen yhteenlaskettu kesto) vähintään 12 kuukauden ajalta.\n\nPisteytettävät vaatimukset:\n- työkokemus mikropalveluarkkitehtuurin ja kontitettujen järjestelmien suunnittelusta\n- työkokemus sovellusalustamigraatioista ja sovellusmigraatioista\n- työkokemus testiautomaation toteutuksesta\n- työkokemus järjestelmän suunnittelu-, toteutus- ja ylläpitotyö osana ketterää tiimiä \n- Spring Boot\n- REST\n- JSON\n- OpenShift\n- Robot Framework\n- 3Scale\n- IBM MQ\n- Tekton\n- RH-SSO\n- React\n- JPA\n- PostgreSQL\n- Sonar\n- Nexus\n- Gradle\n- Git\n- Helm\n- Elasticsearch\n- Dynatrace\n- ArgoCD\n\nHankittavat Java-sovelluskehittäjäasiantuntijapalvelut pitävät sisällään seuraavanlaisia työtehtäviä: \n- mikropalveluarkkitehtuurin ja kontitettujen järjestelmien suunnittelua \n- sovellusalustamigraatioita ja sovellusmigraatioita \n- käyttöliittymäkehitystä \n- automaatiotestausta \n- ketterässä scrum-tiimissä toimimista \n- tietojärjestelmien suunnittelu- ja toteutustyötä \n- yksikkötestausta ",
+      "proposal_deadline": "2023-11-04",
+      "required_skills": [
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 7070,
+          "name": "Spring Boot"
+        },
+        {
+          "id": 4921,
+          "name": "REST API"
+        },
+        {
+          "id": 492,
+          "name": "JSON"
+        },
+        {
+          "id": 1443,
+          "name": "OpenShift"
+        },
+        {
+          "id": 7389,
+          "name": "Robot Framework"
+        },
+        {
+          "id": 7185,
+          "name": "3scale API Management"
+        },
+        {
+          "id": 553,
+          "name": "IBM MQ"
+        },
+        {
+          "id": 5930,
+          "name": "Tekton"
+        },
+        {
+          "id": 4406,
+          "name": "Single sign-on (SSO)"
+        },
+        {
+          "id": 6651,
+          "name": "React"
+        },
+        {
+          "id": 7069,
+          "name": "JPA"
+        },
+        {
+          "id": 19,
+          "name": "PostgreSQL"
+        },
+        {
+          "id": 1663,
+          "name": "Sonar"
+        },
+        {
+          "id": 655,
+          "name": "Nexus"
+        },
+        {
+          "id": 115,
+          "name": "Gradle"
+        },
+        {
+          "id": 7026,
+          "name": "Git"
+        },
+        {
+          "id": 2368,
+          "name": "Helm"
+        },
+        {
+          "id": 7093,
+          "name": "Elasticsearch"
+        },
+        {
+          "id": 2389,
+          "name": "Dynatrace"
+        },
+        {
+          "id": 4907,
+          "name": "Argo CD"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [
+        {
+          "id": 42,
+          "name": "Finnish"
+        }
+      ],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 5,
+      "starting_date": "2024-01-02",
+      "end_customer_offer_deadline": "2023-11-07",
+      "estimated_customer_decision": "2023-11-21",
+      "hourly_rate_min_cents": 7500,
+      "hourly_rate_max_cents": 8000,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Remote",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    },
+    {
+      "id": "GG-05929",
+      "created_at": "2023-10-26T08:32:07.900Z",
+      "slug": "erpsapict-projektipaallikko",
+      "title": "ERP/SAP/ICT-projektipäällikkö",
+      "description": "Finnish language required\n\nTeollisuuspuolen globaali asiakkaamme etsii ERP/SAP/ICT-projektipäällikköä ERP-hankkeen yhden liiketoiminnan käyttöönottoon.\n\nVankan projektipäällikköosaamisen lisäksi valinnassa tarkastellaan laajojen deployment-projektien kokemusta SAP/ERP:n tiimoilta. Haetun ICT-projektipäällikön parina toimii asiakkaan puolelta liiketoiminnan projektista vastaava sekä hankejohto, joka vastaa globaalin järjestelmäalustan toteutumisesta.\n\nLiiketoiminnalla on tehtaita Suomen lisäksi Saksassa, Puolassa, Slovakiassa ja Ruotsissa, joten kohtuullista matkustusvalmiutta odotetaan, vaikka suurelta osin tehtävä tulee sijoittumaan paikan päälle asiakkaan pääkonttoriin pk-seudulle.\n\nTarve on kokoaikainen ja alustavasti kesto on aina vuoteen H1-2026 loppuun. Aloitus viimeistään vuoden vaihteessa.\n\nEnglanninkieli sujuvana pakollinen, suomi suositeltava.",
+      "proposal_deadline": "2023-11-02",
+      "required_skills": [
+        {
+          "id": 2159,
+          "name": "ERP"
+        },
+        {
+          "id": 3584,
+          "name": "SAP S/4HANA"
+        },
+        {
+          "id": 6224,
+          "name": "Project Management"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [],
+      "duration_days_min": 366,
+      "duration_days_max": null,
+      "allocation_pct": 100,
+      "min_experience_years": 5,
+      "starting_date": "2023-12-11",
+      "end_customer_offer_deadline": "2023-10-27",
+      "estimated_customer_decision": "2023-11-24",
+      "hourly_rate_min_cents": 8500,
+      "hourly_rate_max_cents": 9500,
+      "onsite": true,
+      "locations": ["Helsinki"],
+      "published": true
+    },
+    {
+      "id": "GG-57745",
+      "created_at": "2023-10-24T10:54:15.855Z",
+      "slug": "sovellusarkkitehti",
+      "title": "Sovellusarkkitehti",
+      "description": "Julkishallinnon asiakkaamme etsii sovellusarkkitehtia\n\nToimeksiannossa suunnitellaan ja valmistellaan tuotelinja-arkkitehtuurin tyyppistä lähestymistä sovelluskehitykseen. Toimeksiannossa etsitään useiden sovelluskehitystiiimien tuottamista ratkaisuista yhteiskäyttöisiä komponentteja sekä suunnitellaan ja toteutetaan niistä yhteiskäyttöisiä asiakkaan eri sovelluksille/sovelluskehityshankkeille. Osittaista koodin refaktorointia.\n\n- Haetaan Javaa ja Spring Bootia osaava koodaavaa sovellus-/teknologia-arkkitehtia, muut kielet plussaa. Käytössä myös .Net/C#-toteutuksia.\n- Kokemusta yhteiskäyttöisten komponenttien ja kirjastojen tekemisestä sovelluskehitykselle (useita tiimejä/kehitettäviä tuotteita).\n- Vaaditaan kokemusta ja näkemystä tuotelinja-arkkitehtuurista tai muusta vastaavasta sovelluskehityksen yhtenäistämisestä.\n- Mahdollisimman laaja-alainen näkemys sovelluskehitykseen plussaa. \n- hyvät yhteistyötaidot ja konsultatiivinen työskentelyote\n\nTyöskentely tapahtuu etänä. Mahdollisesti joitakin satunnaisia käyntejä asiakkaalla Helsingissä. \n\nTyöskentely edellyttää perusmuotoisen turvallisuusselvityksen.",
+      "proposal_deadline": "2023-11-06",
+      "required_skills": [
+        {
+          "id": 3263,
+          "name": "Sovellusarkkitehtuuri"
+        },
+        {
+          "id": 7123,
+          "name": "Java"
+        },
+        {
+          "id": 7070,
+          "name": "Spring Boot"
+        },
+        {
+          "id": 1869,
+          "name": "Consulting"
+        }
+      ],
+      "nice_to_have_skills": [],
+      "languages": [],
+      "duration_days_min": 180,
+      "duration_days_max": 360,
+      "allocation_pct": 100,
+      "min_experience_years": null,
+      "starting_date": "2024-01-01",
+      "end_customer_offer_deadline": "2023-11-08",
+      "estimated_customer_decision": "2023-11-17",
+      "hourly_rate_min_cents": 7800,
+      "hourly_rate_max_cents": 8200,
+      "onsite": false,
+      "locations": [
+        "Tampere",
+        "Helsinki",
+        "Jyväskylä",
+        "Turku",
+        "Oulu",
+        "Kajaani",
+        "Lappeenranta"
+      ],
+      "published": true
+    }
+  ],
+  "offset": 0,
+  "limit": 200,
+  "total": 17
+}
