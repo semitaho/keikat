@@ -1,0 +1,32 @@
+{
+    "pageProps": {
+        "gig": {
+            "id": "2dd47d99-b728-4605-8328-0c022d9daa27",
+            "published_at": "2023-11-01T13:02:06.553Z",
+            "description_fi": {
+                "title": "ISO27001 Specialist",
+                "subtitle": "Manufacturing",
+                "byline": "<div>Onko ISO27001 ydinosaamistasi? Tässä pitkä projekti sinulle!</div>",
+                "starts_at": "01/2024",
+                "duration": "12 kk",
+                "location": "Helsinki / Remote",
+                "remote": true,
+                "public_body": "<div>Asiakkaamme haluaa varmistua ISO27001 ja NIS2-vaatimustenmukaisuudesta ja etsii asiantuntijaa hallinnollisen tietoturvatyön tueksi. Tehtävänäsi on tukea asiakastamme vaatimustenmukaisuuden saavuttamisessa mainittujen viitekehysten osalta.<br><br>Menestyt tehtävässä jos:</div><ul><li>Tunnet ISO27001-viitekehyksen kuin omat taskusi</li><li>Tunnet NIS2-direktiivin</li><li>Sinulla on vahvaa kokemusta aiemmista sisäisistä compliance-tehtävistä</li></ul><div><br>Jos kiinnostuit toimeksiannosta, hae mukaan heti!</div>"
+            },
+            "categories": [
+                "cybersecurity"
+            ],
+            "agent": {
+                "first_name": "Joonatan",
+                "last_name": "Kauppi",
+                "full_name": "Joonatan Kauppi",
+                "title": null,
+                "email": "joonatan@cyberdo.fi",
+                "phone_number": null
+            },
+            "roots": false,
+            "cyber": true
+        }
+    },
+    "__N_SSG": true
+}

@@ -12,7 +12,6 @@ import {
 } from "./lib/db-util.js";
 import {
   fetchJSON,
-  get,
   navigateFromJson,
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
@@ -100,13 +99,11 @@ async function iterateHTMLProjects(
     projectpage_ref,
     projects_querypath
   );
-  console.log("links", projectlinks);
 
   for (const projectlink of projectlinks) {
-    const projectObj = await initProject(client, projectlink);
+    const projectObj = await initProject(client, { provider_id }, projectlink);
     const jsDom = await fetchHTMLJSDOM(projectlink);
     projectObj.title = navigateFromHtml(jsDom, "h1", true).textContent;
-    console.log("titlte", projectObj.title);
     projectObj.provider = provider_id;
     projectObj.slug = parseSlug(projectlink);
     projectObj.description = navigateFromHtml(
@@ -150,37 +147,33 @@ function parseSlug(link) {
 
 async function iterateJSONProjects(provider) {
   const navigatedProjects = await getJSONProjects(provider);
-
   const client = await connectToDatabase();
 
+  const { settings } = await import(
+    "./providers/" + provider.provider_id + ".js"
+  );
   for (const project of navigatedProjects) {
-    const projectlink = `https://www.finitec.fi/_next/data/hxDzwjrwa0s34NpTAoCph/fi/gigs/${project.id}.json`;
-    const projectObj = await initProject(projectlink);
-    console.log("project processing with slug", projectObj.slug);
-    const json = await fetchJSON(projectlink);
-    projectObj.title = navigateFromJsonPaths(project, [
-      "description_fi.title",
-      "description_en.title",
-    ]);
-    projectObj.subtitle = navigateFromJsonPaths(project, [
-      "description_fi.subtitle",
-      "description_en.subtitle",
-    ]);
-    projectObj.excerpt = navigateFromJsonPaths(json, [
-      "pageProps.gig.description_fi.byline",
-      "pageProps.gig.description_en.byline",
-    ]);
-    projectObj.description = navigateFromJsonPaths(json, [
-      "pageProps.gig.description_fi.public_body",
-      "pageProps.gig.description_en.public_body",
-    ]);
-    projectObj.skills = navigateFromJsonPaths(json, [
-      "pageProps.gig.categories",
-    ]);
-    projectObj.location = navigateFromJsonPaths(json, [
-      "pageProps.gig.description_fi.location",
-      "pageProps.gig.description_en.location",
-    ]);
+    const slug = navigateFromJson(
+      project,
+      settings.slug.path,
+      settings.slug.object
+    );
+    
+    const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
+    const projectObj = await initProject(client, provider, projectlink);
+    const projectDetailJson = await fetchJSON(projectlink);
+    Object.keys(settings).forEach((settingkey) => {
+      const { path, object, useSingle } = settings[settingkey];
+      projectObj[settingkey] = navigateFromJson(
+        useSingle ? projectDetailJson : project,
+        path,
+        object
+      );
+      console.log(settingkey, projectObj[settingkey]);
+    });
+    /*
+
+   
     projectObj.created_at = navigateFromJsonPaths(json, [
       "pageProps.gig.published_at",
     ]);
@@ -190,7 +183,9 @@ async function iterateJSONProjects(provider) {
         "pageProps.gig.description_en.starts_at",
       ])
     );
+     */
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
+   
     await checkAndSaveProject(client, projectObj);
   }
 }
@@ -210,7 +205,7 @@ async function iterateJSONCOMMONProjects(provider) {
   const client = await connectToDatabase();
 
   for (const project of navigatedProjects) {
-    const projectObj = await initProject(client, project.id);
+    const projectObj = await initProject(client, provider, project.id);
     projectObj.provider = provider.provider_id;
     projectObj.slug = navigateFromJson(project, "id");
     projectObj.title = navigateFromJsonPaths(project, ["title"]);
@@ -229,22 +224,27 @@ async function iterateJSONCOMMONProjects(provider) {
     projectObj.skills = navigateFromJsonPaths(project, [
       "required_skills.name",
     ]);
-    projectObj.location = (navigateFromJsonPaths(project, ["locations"]) || []).join(", ");
+    projectObj.location = (
+      navigateFromJsonPaths(project, ["locations"]) || []
+    ).join(", ");
     projectObj.created_at = navigateFromJsonPaths(project, ["created_at"]);
     projectObj.start_date = parseDate(
       navigateFromJsonPaths(project, ["starting_date"])
     );
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
-   
+
     await checkAndSaveProject(client, projectObj);
-    
   }
 }
 
-async function initProject(client, reference) {
+async function initProject(client, provider, reference) {
   const project = await getProjectByReference(client, reference);
   return (
-    (project && { ...project, updated_at: new Date() }) || {
+    (project && {
+      ...project,
+      updated_at: new Date(),
+    }) || {
+      provider: provider.provider_id,
       reference,
     }
   );
