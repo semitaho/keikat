@@ -7,4 +7,5 @@ export interface Project {
   description: string;
   created_at: Date;
   start_date?: Date;
+  provider: string;
 }

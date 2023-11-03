@@ -2,19 +2,10 @@ import fetch from "node-fetch";
 import jsdom from "jsdom";
 const { JSDOM } = jsdom;
 
-export async function readAllProjectLinks(projectpage_ref, projects_querypath) {
+export async function getHTMLProjects({ projectpage_ref, projects_querypath }) {
   const jsdomContent = await fetchHTMLJSDOM(projectpage_ref);
   const linkNodesArr = navigateFromHtml(jsdomContent, projects_querypath);
-  return linkNodesArr
-    .map((linkNode) => linkNode.href)
-    .map((link) => {
-      if (link.indexOf("/") === 0) {
-        const url = new URL(projectpage_ref);
-        const mainurl = url.protocol + "//" + url.hostname;
-        return mainurl + link;
-      }
-      return link;
-    });
+  return linkNodesArr;
 }
 
 export async function fetchHTMLJSDOM(url) {

@@ -8,6 +8,7 @@ export default function ProjectCard({
   title,
   subtitle,
   created_at,
+  provider,
   start_date,
   category,
   location,
@@ -35,7 +36,11 @@ export default function ProjectCard({
 
       <div className="px-3 flex-none flex flex-col">
         <div className=" pb-3 pt-5 flex-grow">
+          <div className="flex justify-between items-start">
           <h3 className="font-semibold uppercase">{title}</h3>
+          <p className="text-sm text-slate-500 text-right font-bold italic">{provider}</p>
+
+          </div>
           <p className="text-gray-700 text-xs">{subtitle}</p>
         </div>
         <div className="flex justify-between font-red font-semibold text-sm">

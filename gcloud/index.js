@@ -1,6 +1,4 @@
 import functions from "@google-cloud/functions-framework";
-import fetch from "node-fetch";
-
 import {
   ERROR_CODE_ROW_ALREADY_EXISTS,
   connectToDatabase,
@@ -12,14 +10,11 @@ import {
 } from "./lib/db-util.js";
 import {
   fetchJSON,
+  getJSONProjects,
   navigateFromJson,
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
-import {
-  fetchHTMLJSDOM,
-  navigateFromHtml,
-  readAllProjectLinks,
-} from "./lib/html-util.js";
+import { fetchHTMLJSDOM, getHTMLProjects, navigateFromHtml } from "./lib/html-util.js";
 import { parseDate } from "./lib/parser-util.js";
 
 function parseTagsFromSkills(skills) {
@@ -41,22 +36,11 @@ functions.http("updateGigs", async (req, res) => {
 
   const providers = await readProviders(client);
   for (const provider of providers) {
-    const { provider_id, fetch_type, projectpage_ref, projects_querypath } =
-      provider;
+    const { fetch_type } = provider;
     switch (fetch_type) {
       case "HTML":
-        // await iterateHTMLProjects(client, provider);
-
-        //provider_id, providerPath, links);
-
-        //const providerPath = `./providers/${provider_id}.js`;
-        //const { readAllProjectLinks } = await import(providerPath);
-        /*
-        
-        const links = await readAllProjectLinks(projectpage_ref);
-         */
+        await iterateHTMLProjects(provider);
         break;
-
       case "JSON":
         await iterateJSONProjects(provider);
         break;
@@ -70,7 +54,7 @@ functions.http("updateGigs", async (req, res) => {
     }
   }
 
-  res.send(`Hello handsome!: providers: ${providers}`);
+  res.send(`Hello: providers: ${providers}`);
 });
 
 async function checkAndSaveProject(client, projectObj) {
@@ -91,16 +75,24 @@ async function checkAndSaveProject(client, projectObj) {
   }
 }
 
-async function iterateHTMLProjects(
-  client,
-  { projectpage_ref, projects_querypath, provider_id }
-) {
-  const projectlinks = await readAllProjectLinks(
-    projectpage_ref,
-    projects_querypath
-  );
+function parseSlug(link) {
+  if (link.includes("GG-")) {
+    return link.substr(link.indexOf("GG-"), link.lastIndexOf("/"));
+  }
+  return link.substr(link.lastIndexOf("/") + 1);
+}
 
-  for (const projectlink of projectlinks) {
+async function iterateHTMLProjects(provider) {
+  const navigatedProjects = await getHTMLProjects(provider);
+  console.log('projects', navigatedProjects.length);
+
+  const client = await connectToDatabase();
+
+  
+  for (const navigatedProject of navigatedProjects) {
+    console.log('content', navigatedProject.innerHTML);
+
+    /*
     const projectObj = await initProject(client, { provider_id }, projectlink);
     const jsDom = await fetchHTMLJSDOM(projectlink);
     projectObj.title = navigateFromHtml(jsDom, "h1", true).textContent;
@@ -136,13 +128,7 @@ async function iterateHTMLProjects(
   }
   */
   }
-}
-
-function parseSlug(link) {
-  if (link.includes("GG-")) {
-    return link.substr(link.indexOf("GG-"), link.lastIndexOf("/"));
-  }
-  return link.substr(link.lastIndexOf("/") + 1);
+  
 }
 
 async function iterateJSONProjects(provider) {
@@ -158,7 +144,7 @@ async function iterateJSONProjects(provider) {
       settings.slug.path,
       settings.slug.object
     );
-    
+
     const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
     const projectObj = await initProject(client, provider, projectlink);
     const projectDetailJson = await fetchJSON(projectlink);
@@ -185,19 +171,9 @@ async function iterateJSONProjects(provider) {
     );
      */
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
-   
+
     await checkAndSaveProject(client, projectObj);
   }
-}
-
-async function getJSONProjects(provider) {
-  const response = await fetch(provider.projectpage_ref);
-  const jsonProjects = await response.json();
-  const navigatedProjects = navigateFromJson(
-    jsonProjects,
-    provider.projects_querypath
-  );
-  return navigatedProjects;
 }
 
 async function iterateJSONCOMMONProjects(provider) {
