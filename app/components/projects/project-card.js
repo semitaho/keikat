@@ -3,7 +3,6 @@ import Tag from "./tag";
 import Link from "next/link";
 import { getImageByCategory } from "@/app/lib/parser-util";
 import { useDateFormat } from "@/app/hooks/server-hooks";
-import FinnishDate from "./../ui/finnish-date";
 export default function ProjectCard({
   title,
   subtitle,
@@ -12,18 +11,15 @@ export default function ProjectCard({
   start_date,
   category,
   location,
-  slug,
   tags,
   excerpt,
 }) {
   const imagepath = `/images/${getImageByCategory(category)}`;
   const [df, aloitusf] = useDateFormat();
+  const providerlink = `/projektit?provider=${provider}`;
 
   return (
-    <Link
-      className="lg:max-w-[30%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg"
-      href={`/projektit/${slug}`}
-    >
+    <div className="lg:max-w-[30%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg">
       <div>
         <Image
           width={30}
@@ -39,14 +35,11 @@ export default function ProjectCard({
         <div className=" pb-3 pt-5 flex-grow">
           <div className="flex justify-between items-start">
             <h3 className="font-semibold uppercase">{title}</h3>
-            <p className="text-sm text-slate-500 text-right font-bold italic">
-              <Link
-                href={`/projektit?provider=${provider}`}
-                className="hover:underline"
-              >
+            <div className="text-sm text-slate-500 text-right font-bold italic">
+              <Link href={providerlink} className="hover:underline">
                 {provider}
               </Link>
-            </p>
+            </div>
           </div>
           <p className="text-gray-700 text-xs">{subtitle}</p>
         </div>
@@ -58,10 +51,10 @@ export default function ProjectCard({
         </div>
       </div>
       <div className="px-3 my-2 flex-grow">
-        <p
+        <div
           className="text-clip"
           dangerouslySetInnerHTML={{ __html: excerpt }}
-        />
+        ></div>
       </div>
 
       <div>
@@ -79,6 +72,6 @@ export default function ProjectCard({
           <time className="text-right">{df(created_at)}</time>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

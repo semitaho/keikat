@@ -6,9 +6,13 @@ import { SearchParams } from "../data/search-params.model";
 export async function loadProjects(search: SearchParams) {
   const active = true;
   const provider = search.provider || '';
-  console.log('provider', provider);
+  const searchVal =  search.search && search.search != '' ? `${search.search}:*`  : '';
+  console.log('provider', searchVal);
   const projektit = await sql`SELECT * FROM project 
-  WHERE (active = ${active} OR null = ${active}) AND  (provider = ${provider} OR '' = ${provider})  ORDER BY created_at DESC`;
+  WHERE active = ${active} 
+  AND  (provider = ${provider} OR '' = ${provider})
+  AND  ('' = ${searchVal} OR (search @@ to_tsquery('finnish', ${searchVal})))  
+  ORDER BY created_at DESC`;
   return projektit.rows;
 }
 
