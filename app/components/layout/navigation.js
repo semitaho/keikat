@@ -2,7 +2,7 @@ import Link from "next/link";
 import { HeaderLink } from "../header-link";
 
 const links = [
-  { href: "/projektit", text: "Vapaat projektit" },
+  { href: "/projektit", text: "Avoimet toimeksiannot" },
   { href: "/ota-yhteytta", text: "Ota yhteyttä" },
 ];
 

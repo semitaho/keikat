@@ -1,13 +1,14 @@
 import { Project } from "../data/project.model";
 
-import { 
-  sql,
-} from "@vercel/postgres";
+import { sql } from "@vercel/postgres";
+import { SearchParams } from "../data/search-params.model";
 
-
-export async function loadAllProjects() {
-  const projektit =
-    await sql`SELECT * FROM project ORDER BY created_at DESC`;
+export async function loadProjects(search: SearchParams) {
+  const active = true;
+  const provider = search.provider || '';
+  console.log('provider', provider);
+  const projektit = await sql`SELECT * FROM project 
+  WHERE (active = ${active} OR null = ${active}) AND  (provider = ${provider} OR '' = ${provider})  ORDER BY created_at DESC`;
   return projektit.rows;
 }
 

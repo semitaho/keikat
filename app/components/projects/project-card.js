@@ -18,6 +18,7 @@ export default function ProjectCard({
 }) {
   const imagepath = `/images/${getImageByCategory(category)}`;
   const [df, aloitusf] = useDateFormat();
+
   return (
     <Link
       className="lg:max-w-[30%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg"
@@ -37,14 +38,22 @@ export default function ProjectCard({
       <div className="px-3 flex-none flex flex-col">
         <div className=" pb-3 pt-5 flex-grow">
           <div className="flex justify-between items-start">
-          <h3 className="font-semibold uppercase">{title}</h3>
-          <p className="text-sm text-slate-500 text-right font-bold italic">{provider}</p>
-
+            <h3 className="font-semibold uppercase">{title}</h3>
+            <p className="text-sm text-slate-500 text-right font-bold italic">
+              <Link
+                href={`/projektit?provider=${provider}`}
+                className="hover:underline"
+              >
+                {provider}
+              </Link>
+            </p>
           </div>
           <p className="text-gray-700 text-xs">{subtitle}</p>
         </div>
         <div className="flex justify-between font-red font-semibold text-sm">
-          <span className="italic text-xs text-gray-500">{start_date &&  `Aloitus ${aloitusf(start_date)}`}</span>
+          <span className="italic text-xs text-gray-500">
+            {start_date && `Aloitus ${aloitusf(start_date)}`}
+          </span>
           <span className="text-gray-500 text-xs">83 €</span>
         </div>
       </div>
