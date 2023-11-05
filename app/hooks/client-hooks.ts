@@ -24,11 +24,11 @@ export function useQueryParams() {
       const urlSearchParams = new URLSearchParams(searchParams);
 
       if (typeof value === 'string') {
-        console.log('ollaanko...', value);
 
         urlSearchParams.set(param, value as string);
       } else {
-        urlSearchParams.set(param, Array.from(value).join(","));
+        const valueList = Array.from(value);
+        urlSearchParams.set(param, valueList.join(","));
       }
       router.push("/projektit?" + urlSearchParams.toString());
     },
