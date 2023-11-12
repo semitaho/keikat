@@ -1,38 +1,41 @@
-import { db } from "@vercel/postgres";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
 export async function connectToDatabase() {
-  const client = await db.connect();
-  return client;
+  // Create a MongoClient with a MongoClientOptions object to set the Stable API version
+  const client = new MongoClient(process.env.MONGODB_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
+  const db = await client.db("keikat");
+  return db;
 }
 
-export async function fetchActiveProviders(client) {
-  const results = await client.sql`SELECT * FROM provider where active = true`;
-  console.log("GOT active providers: " + results.rowCount);
-  return results.rows;
+export async function fetchActiveProviders(db) {
+  const results = await db
+    .collection("provider")
+    .find({ active: true })
+    .toArray();
+  return results;
 }
 
 export const ERROR_CODE_ROW_ALREADY_EXISTS = "23505";
-export async function saveProject(client, project) {
-  const fields = Object.keys(project).filter((field) => project[field]);
-  const values = fields.map((field) => project[field]);
-  let valueStr = values.map((_, index) => `$${index + 1}`).join(", ");
-
-  let sqlToInsert = `insert into project(${fields.join(", ")}) values(`;
-  sqlToInsert += valueStr;
-  sqlToInsert += ")";
-  return await client.query(sqlToInsert, values);
+export async function saveProject(db, project) {
+  const insert = await db.collection("project").insertOne(project);
+  return insert;
 }
 
-export async function updateProject(client, project) {
-  const fields = Object.keys(project)
-    .filter((field) => field !== "project_id")
-    .filter((field) => project[field]);
-  const valueArray = fields.map((field) => project[field]);
-  const values = fields.map((field, index) => `${field} =  $${index + 1}`);
-  let valueStr = values.join(", ");
-  let sqlToUpdate =
-    `UPDATE project SET ${valueStr} where project_id = ` + project.project_id;
-  return await client.query(sqlToUpdate, valueArray);
+export async function updateProject(db, project) {
+  const updateProject = {
+    $set: {
+      ...project,
+    },
+  };
+  return await db.collection("project").updateOne({
+    _id: project._id
+  }, updateProject);
 }
 
 export async function getProjectBySlug(slug) {
@@ -45,14 +48,7 @@ export async function getProjectBySlug(slug) {
   return null;
 }
 
-export async function getProjectByReference(client, reference) {
-  console.log("with ref", reference);
-
-  const results =
-    await client.sql`SELECT * FROM project WHERE reference = ${reference}`;
-
-  if (results.rows.length) {
-    return results.rows[0];
-  }
-  return null;
+export async function getProjectByReference(db, reference) {
+  const result = await db.collection("project").findOne({ reference });
+  return result;
 }

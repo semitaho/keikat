@@ -16,7 +16,7 @@ export default function ProjectCard({
 }) {
   const imagepath = `/images/${getImageByCategory(category)}`;
   const [df, aloitusf] = useDateFormat();
-  const providerlink = `/projektit?provider=${provider}`;
+  const providerlink = `/projektit?providers=${provider}`;
 
   return (
     <div className="lg:max-w-[30%] sm:max-w-[40%]  flex flex-col  rounded lg:hover:scale-105 transform transition  bg-white shadow-lg">
@@ -51,10 +51,11 @@ export default function ProjectCard({
         </div>
       </div>
       <div className="px-3 my-2 flex-grow">
+        {excerpt &&
         <div
           className="text-clip"
           dangerouslySetInnerHTML={{ __html: excerpt }}
-        ></div>
+        ></div>}
       </div>
 
       <div>

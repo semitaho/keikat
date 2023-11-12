@@ -14,9 +14,10 @@ import {
   navigateFromJson,
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
-import { fetchHTMLJSDOM, getHTMLProjects, navigateFromHtml } from "./lib/html-util.js";
+import {  fetchHTMLJSDOM, getHTMLProjects, navigateFromHtml } from "./lib/html-util.js";
 import { parseDate } from "./lib/parser-util.js";
-
+import jsdom from "jsdom";
+const { JSDOM } = jsdom;
 function parseTagsFromSkills(skills) {
   return skills.map((skill) => skill.toLocaleLowerCase("fi"));
 }
@@ -32,17 +33,16 @@ functions.http("updateGigs", async (req, res) => {
     return;
   }
 
-  const client = await connectToDatabase();
-
-  const providers = await readProviders(client);
+  const db = await connectToDatabase();
+  const providers = await readProviders(db);
   for (const provider of providers) {
     const { fetch_type } = provider;
     switch (fetch_type) {
       case "HTML":
-        await iterateHTMLProjects(provider);
+        await iterateHTMLProjects(db, provider);
         break;
       case "JSON":
-        await iterateJSONProjects(provider);
+        await iterateJSONProjects(db, provider);
         break;
       case "JSONCOMMON":
         await iterateJSONCOMMONProjects(provider);
@@ -57,13 +57,13 @@ functions.http("updateGigs", async (req, res) => {
   res.send(`Hello: providers: ${providers}`);
 });
 
-async function checkAndSaveProject(client, projectObj) {
+async function checkAndSaveProject(db, projectObj) {
   try {
-    if (projectObj.project_id) {
-      await updateProject(client, projectObj);
+    if (projectObj._id) {
+      await updateProject(db, projectObj);
       console.log("project UPDATED with slug", projectObj.slug);
     } else {
-      await saveProject(client, projectObj);
+      await saveProject(db, projectObj);
       console.log("project CREATED with slug", projectObj.slug);
     }
   } catch (error) {
@@ -75,65 +75,38 @@ async function checkAndSaveProject(client, projectObj) {
   }
 }
 
-function parseSlug(link) {
-  if (link.includes("GG-")) {
-    return link.substr(link.indexOf("GG-"), link.lastIndexOf("/"));
-  }
-  return link.substr(link.lastIndexOf("/") + 1);
-}
 
-async function iterateHTMLProjects(provider) {
+async function iterateHTMLProjects(db, provider) {
   const navigatedProjects = await getHTMLProjects(provider);
-  console.log('projects', navigatedProjects.length);
-
-  const client = await connectToDatabase();
-
-  
+  const { provider_id }  = provider;
+  const { settings, readSlug } = await import(
+    "./providers/" + provider.provider_id + ".js"
+  );
   for (const navigatedProject of navigatedProjects) {
-    console.log('content', navigatedProject.innerHTML);
-
-    /*
-    const projectObj = await initProject(client, { provider_id }, projectlink);
+    const slug = readSlug ? readSlug(navigatedProject) : navigateFromHtml(
+      navigatedProject,
+      settings.slug.path,
+      settings.slug.object,
+      false
+    );
+    const projectObj = await initProject(db, provider, slug);
+    projectObj.slug = slug;
+    const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);    
     const jsDom = await fetchHTMLJSDOM(projectlink);
-    projectObj.title = navigateFromHtml(jsDom, "h1", true).textContent;
+    Object.keys(settings).forEach(settingkey => {
+      const { path, useSingle, object, type } = settings[settingkey];
+      projectObj[settingkey] = navigateFromHtml(useSingle ? jsDom.window.document : navigatedProject, path, object, true, type);
+    });
+    projectObj.tags = parseTagsFromSkills(projectObj.skills);
     projectObj.provider = provider_id;
-    projectObj.slug = parseSlug(projectlink);
-    projectObj.description = navigateFromHtml(
-      jsDom,
-      "section p.text-base",
-      true
-    ).innerHTML;
-    console.log("slug käsitelty", projectObj.description);
-
-    await checkAndSaveProject(client, projectObj);
-
-    /*
-    projectObj["provider"] = provider;
-    const keys = Object.keys(providerInfo);
-    const importedData = await import(providerpath);
-    for (const key of keys) {
-      const fnName = providerInfo[key];
-      if (importedData[fnName]) {
-        projectObj[key] = await importedData[fnName](jsDomObject);
-      } else {
-        console.warn("please create  function:" + fnName);
-      }
-    }
-    if (projectObj.skills) {
-      projectObj.tags = parseTagsFromSkills(projectObj.skills);
-    }
-    if (projectObj.reference) {
-      projectObj.slug = projectlink.substring(projectlink.lastIndexOf("/") + 1);
-    }
-  }
-  */
+    await checkAndSaveProject(db, projectObj);
   }
   
 }
 
-async function iterateJSONProjects(provider) {
+async function iterateJSONProjects(db, provider) {
   const navigatedProjects = await getJSONProjects(provider);
-  const client = await connectToDatabase();
+  const { provider_id }  = provider;
 
   const { settings } = await import(
     "./providers/" + provider.provider_id + ".js"
@@ -146,8 +119,14 @@ async function iterateJSONProjects(provider) {
     );
 
     const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
-    const projectObj = await initProject(client, provider, projectlink);
+    
+    
+    const projectObj = await initProject(db, provider, projectlink);
+    
+    projectObj.slug = slug;
     const projectDetailJson = await fetchJSON(projectlink);
+
+    
     Object.keys(settings).forEach((settingkey) => {
       const { path, object, useSingle } = settings[settingkey];
       projectObj[settingkey] = navigateFromJson(
@@ -155,8 +134,10 @@ async function iterateJSONProjects(provider) {
         path,
         object
       );
-      console.log(settingkey, projectObj[settingkey]);
     });
+    projectObj.tags = parseTagsFromSkills(projectObj.skills);
+    await checkAndSaveProject(db, projectObj);
+
     /*
 
    
@@ -169,10 +150,8 @@ async function iterateJSONProjects(provider) {
         "pageProps.gig.description_en.starts_at",
       ])
     );
-     */
-    projectObj.tags = parseTagsFromSkills(projectObj.skills);
-
-    await checkAndSaveProject(client, projectObj);
+     
+  */
   }
 }
 
@@ -213,15 +192,19 @@ async function iterateJSONCOMMONProjects(provider) {
   }
 }
 
-async function initProject(client, provider, reference) {
-  const project = await getProjectByReference(client, reference);
+async function initProject(db, provider, reference) {
+  const project = await getProjectByReference(db, reference);
+  const currentDate = new Date();
   return (
     (project && {
       ...project,
-      updated_at: new Date(),
+      updated_at: currentDate,
+      active: true
     }) || {
       provider: provider.provider_id,
+      created_at: currentDate,
       reference,
+      active: true
     }
   );
 }

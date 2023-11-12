@@ -9,8 +9,14 @@ export const settings = {
     useSingle: true
   },
 
-  subtitle: {
+  excerpt: {
     path: `$.result.data.contentfulContentPage.preamble.preamble`,
+    object: true,
+    useSingle: true
+  },
+
+  description: {
+    path: `$.non`,
     object: true,
     useSingle: true
   },

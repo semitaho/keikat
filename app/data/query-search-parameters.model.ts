@@ -1,6 +1,6 @@
 export type QuerySearchParameters = {
 
     skills: string;
-    provider: string;
+    providers: string;
     search: string;
 }

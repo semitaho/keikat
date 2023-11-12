@@ -2,7 +2,7 @@
 import { useState } from "react";
 import SelectList from "./../ui/select-list";
 import { useQueryParams } from "@/app/hooks/client-hooks";
-export default function SearchForm({ skills }) {
+export default function SearchForm({ skills, providers }) {
   const { getParam, getString, refreshWithQueryParam } = useQueryParams();
   const search = getString("search");
   const [searchVal, setSearchVal] = useState(search);
@@ -18,16 +18,14 @@ export default function SearchForm({ skills }) {
     }
   }
 
-  function onSelect(event) {
-    const skills = getParam("skills");
+  function onSelect(event, paramName) {
+    const values = getParam(paramName);
 
-    const newSkill = event.target.value;
-    if (newSkill === "") return;
-    if (skills.has(newSkill)) return;
-    const newSkills = skills.add(newSkill);
-    console.log("new skills", newSkills);
-
-    refreshWithQueryParam("skills", newSkills);
+    const newValue = event.target.value;
+    if (newValue === "") return;
+    if (values.has(newValue)) return;
+    const newValues = values.add(newValue);
+    refreshWithQueryParam(paramName, newValues);
   }
   return (
     <form className="w-full gap-2 items-center flex mt-10">
@@ -48,8 +46,17 @@ export default function SearchForm({ skills }) {
       <div>
         <SelectList
           label="Valitse taidot"
+          id="skills"
           onSelect={onSelect}
           options={skills}
+        ></SelectList>
+      </div>
+      <div>
+        <SelectList
+          label="Valitse välittäjät"
+          id="providers"
+          onSelect={onSelect}
+          options={providers}
         ></SelectList>
       </div>
     </form>

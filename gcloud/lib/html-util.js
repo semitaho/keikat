@@ -3,8 +3,9 @@ import jsdom from "jsdom";
 const { JSDOM } = jsdom;
 
 export async function getHTMLProjects({ projectpage_ref, projects_querypath }) {
+  console.log('projectpage', projects_querypath);
   const jsdomContent = await fetchHTMLJSDOM(projectpage_ref);
-  const linkNodesArr = navigateFromHtml(jsdomContent, projects_querypath);
+  const linkNodesArr = navigateFromHtml(jsdomContent.window.document, projects_querypath, false, false);
   return linkNodesArr;
 }
 
@@ -18,17 +19,33 @@ export async function fetchHTMLJSDOM(url) {
 }
 
 export async function fetchProjectDetailContentJsDOM(href) {
-  const response = await fetch(href);
-  const content = await response.text();
-  return new JSDOM(content);
+  return fetchHTMLJSDOM(href);
 }
 
-export function navigateFromHtml(jsDom, domPath, single = false) {
-  const nodes = jsDom.window.document.querySelectorAll(domPath);
+function parseByType(node, type) {
+  switch (type) {
+    case "html": 
+      console.log('for HTML!');
+      return node.innerHTML;
+    case "metacontent":
+      console.log('node', node);
+      return node.getAttribute("content");
+      default:
+      return node.textContent;  
+  }
+
+}
+
+export function navigateFromHtml(document, domPath, object = false, textContent = true, type = 'text') {
+  const nodes = document.querySelectorAll(domPath);
   const nodesArr = Array.from(nodes);
-  if (single) {
-    return nodesArr[0];
+  if (object) {
+    return nodesArr[0] &&  parseByType(nodesArr[0], type);
 
   }
-  return nodesArr;
+  if (!textContent) {
+    return nodesArr;
+  }
+  return nodesArr.map(node =>  parseByType(node, type));
 }
+

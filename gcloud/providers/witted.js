@@ -1,34 +1,35 @@
-import fetch from "node-fetch";
+export const settings = {
+  title: {
+    path: 'h1',
+    object: true,
+    useSingle: true
+  },
 
-import jsdom from "jsdom";
-import { navigateFromHtml } from "../lib/html-util.js";
-const { JSDOM } = jsdom;
+  skills: {
+    path: 'ul > li:nth-child(2) > div > a',
+    object: false,
+    useSingle: true
+  },
 
-export async function crawlForTitle(jsdom) {
-  const title = jsdom.window.document.querySelector("h1").textContent;
-  return title;
+  description: {
+    path: '.ingress',
+    object: true,
+    useSingle: true,
+    type: 'html'
+  },
+
+  excerpt: {
+    path: 'meta[name="description"]',
+    object: true,
+    useSingle: true,
+    type: 'metacontent'
+  },
+
+};
+
+
+export function readSlug(project) {
+  const href = project.querySelector('a').getAttribute("href");
+  return href.substring(href.lastIndexOf("/")+1);
+
 }
-
-export async function crawlForLocation(jsdom) {
-    const links = Array.from(jsdom.window.document.querySelectorAll("li.links--inverted:last-child a"));
-    const locations = links.map(link => link.textContent).join(", ");
-    return locations;
-}
-
-export async function crawlForSkills(jsdom) {
-  const allLists = jsdom.window.document.querySelectorAll("li");
-  const listsWithSkills = Array.from(allLists)
-    .filter((li) => li.textContent.includes("Skills:"))
-    .flatMap((li) => Array.from(li.querySelectorAll("a")))
-    .map((link) => link.textContent);
-  return listsWithSkills;
-}
-
-
-export async function crawlForDescription(jsdom) {
-    const description = jsdom.window.document.querySelector(
-      "div.wysiwyg"
-    );
-    return description.innerHTML;
-  }
-  
