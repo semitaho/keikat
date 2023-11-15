@@ -20,14 +20,14 @@ function createInSearchFilter(fieldName: string, query: string): Document {
       index: "freesearchIdx", // optional, defaults to "default"
       queryString: {
         defaultPath: fieldName,
-        query
+        query,
       },
     },
   };
 }
 export async function loadProjects(search: QuerySearchParameters) {
   let aggregates: Document[] = [];
-  let filters: {[key: string]: string} = {};
+  let filters: { [key: string]: string } = {};
   const defaultPaths = [];
 
   if (search.skills && search.skills.length) {
@@ -44,26 +44,31 @@ export async function loadProjects(search: QuerySearchParameters) {
     defaultPaths.push("description");
   }
 
+  const queryString = defaultPaths.length
+    ? {
+        queryString: {
+          defaultPath: defaultPaths.join(","),
+          query: Object.keys(filters)
+            .map((filter) => `${filter}:${filters[filter]}`)
+            .join(" OR "),
+        },
+      }
+    : {};
 
-  const queryString = (defaultPaths.length) ?
-    { queryString: {
-      defaultPath: defaultPaths.join(","),
-      query: Object.keys(filters).map(filter => `${filter}:${filters[filter]}`).join(" OR ")
-    }
-  } : {};
+  if (Object.keys(queryString).length) {
+    aggregates.push({
+      $search: {
+        index: "freesearchIdx",
+        ...queryString,
+      },
+    });
+  }
 
-
-    if (Object.keys(queryString).length) {
-      aggregates.push({
-        '$search': {
-          index: "freesearchIdx",
-          ...queryString,    
-        }
-      });
-    }
-    
-      
-      /*
+  aggregates.push({
+    $sort: { created_at: -1 }
+  });
+  
+  /*
   let filter = { ...skillFilter };
 
   console.log("filter", filter);
@@ -72,7 +77,6 @@ export async function loadProjects(search: QuerySearchParameters) {
     aggregates.push(filter);
   }
 */
-console.log('arrgre', aggregates);
   const results = await db
     .collection("project")
     .aggregate(aggregates)
@@ -117,7 +121,6 @@ export async function getAllProviders() {
     .sort((skill1: string, skill2: string) =>
       skill1.toLocaleLowerCase().localeCompare(skill2)
     );
-
 }
 
 export async function getProjektiBySlug(slug: string) {
