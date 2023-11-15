@@ -19,6 +19,9 @@ import { parseDate } from "./lib/parser-util.js";
 import jsdom from "jsdom";
 const { JSDOM } = jsdom;
 function parseTagsFromSkills(skills) {
+  if (!skills) {
+    return [];
+  }
   return skills.map((skill) => skill.toLocaleLowerCase("fi"));
 }
 
@@ -44,6 +47,9 @@ functions.http("updateGigs", async (req, res) => {
       case "JSON":
         await iterateJSONProjects(db, provider);
         break;
+        case "JSONHTML":
+          await iterateJSONHTMLProjects(db, provider);
+          break;  
       case "JSONCOMMON":
         await iterateJSONCOMMONProjects(provider);
         break;
@@ -106,7 +112,7 @@ async function iterateHTMLProjects(db, provider) {
 
 async function iterateJSONProjects(db, provider) {
   const navigatedProjects = await getJSONProjects(provider);
-  const { provider_id }  = provider;
+  const { provider_id,homepage }  = provider;
 
   const { settings } = await import(
     "./providers/" + provider.provider_id + ".js"
@@ -116,13 +122,10 @@ async function iterateJSONProjects(db, provider) {
       project,
       settings.slug.path,
       settings.slug.object
-    );
-
+    ).replace(homepage, "");
+    console.log('slug', slug);
     const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
-    
-    
     const projectObj = await initProject(db, provider, projectlink);
-    
     projectObj.slug = slug;
     const projectDetailJson = await fetchJSON(projectlink);
 
@@ -135,6 +138,48 @@ async function iterateJSONProjects(db, provider) {
         object
       );
     });
+    projectObj.tags = parseTagsFromSkills(projectObj.skills);
+    await checkAndSaveProject(db, projectObj);
+
+    /*
+
+   
+    projectObj.created_at = navigateFromJsonPaths(json, [
+      "pageProps.gig.published_at",
+    ]);
+    projectObj.start_date = parseDate(
+      navigateFromJsonPaths(json, [
+        "pageProps.gig.description_fi.starts_at",
+        "pageProps.gig.description_en.starts_at",
+      ])
+    );
+     
+  */
+  }
+}
+
+async function iterateJSONHTMLProjects(db, provider) {
+  const navigatedProjects = await getJSONProjects(provider);
+  const { provider_id,homepage }  = provider;
+
+  const { settings } = await import(
+    "./providers/" + provider.provider_id + ".js"
+  );
+  for (const project of navigatedProjects) {
+    const slug = navigateFromJson(
+      project,
+      settings.slug.path,
+      settings.slug.object
+    ).replace(homepage, "");
+    const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
+    const projectObj = await initProject(db, provider, projectlink);
+    projectObj.slug = slug;
+    const jsDom = await fetchHTMLJSDOM(projectlink);
+    Object.keys(settings).forEach(settingkey => {
+      const { path, useSingle, object, type } = settings[settingkey];
+      projectObj[settingkey] = useSingle ? navigateFromHtml(jsDom.window.document, path, object, true, type): navigateFromJson(project, path, object).replace(homepage, "");;
+    });
+    console.log('projectobj', projectObj);
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
     await checkAndSaveProject(db, projectObj);
 

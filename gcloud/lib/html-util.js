@@ -25,7 +25,6 @@ export async function fetchProjectDetailContentJsDOM(href) {
 function parseByType(node, type) {
   switch (type) {
     case "html": 
-      console.log('for HTML!');
       return node.innerHTML;
     case "metacontent":
       console.log('node', node);
