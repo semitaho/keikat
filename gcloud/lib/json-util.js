@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import jp from "jsonpath";
+import { parseRegexp } from "./parser-util.js";
 
 export async function getJSONProjects({ projectpage_ref, projects_querypath }) {
   const response = await fetch(projectpage_ref);
@@ -8,10 +9,31 @@ export async function getJSONProjects({ projectpage_ref, projects_querypath }) {
   return navigatedProjects;
 }
 
-export function navigateFromJson(json, jsonPath, asObject = false) {
+function parseByType(text, type) {
+  switch (type) {
+    case "slugfromlink": {
+      return parseRegexp(text, /\/([^\/]+)$/);
+    }
+    case "finnishdate": 
+      const dateResult = parseRegexp(text,  /\d+\.\d+\.\d+/);
+      if (!dateResult) return null;
+      const [day, month, year] =  dateResult.split(".");
+      if (day > 1900) {
+        return new Date(day, month-1, year);
+ 
+      }
+      return new Date(year, month-1, day);
+    default:
+      return text;
+
+  }
+
+}
+
+export function navigateFromJson(json, jsonPath, asObject = false, type = null) {
   const result = jp.query(json, jsonPath);
   if (asObject && result.length) {
-    return result[0];
+    return parseByType(result[0], type);
   }
   if (asObject && !result.length) {
     return null;

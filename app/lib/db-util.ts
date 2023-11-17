@@ -68,15 +68,6 @@ export async function loadProjects(search: QuerySearchParameters) {
     $sort: { created_at: -1 }
   });
   
-  /*
-  let filter = { ...skillFilter };
-
-  console.log("filter", filter);
-  
-  if (Object.keys(filter).length) {
-    aggregates.push(filter);
-  }
-*/
   const results = await db
     .collection("project")
     .aggregate(aggregates)

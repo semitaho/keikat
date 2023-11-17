@@ -10,8 +10,8 @@ describe("json-util test", () => {
     const data = JSON.parse(JSON.stringify(gig));
 
     it("should parse skills successfully", () => {
+
       const skills = navigateFromJson(data, "$.items..required_skills..name");
-      console.log("skills", skills);
     });
   });
 

@@ -9,3 +9,13 @@ export function parseDate(dateString) {
   }
   return new Date(dateString);
 }
+
+export function parseRegexp(text, regexp) {
+  const match = regexp.exec(text);
+  if (match) {
+    return match[0];
+  }
+  return null;
+
+}
+

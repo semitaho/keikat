@@ -27,7 +27,6 @@ function parseByType(node, type) {
     case "html": 
       return node.innerHTML;
     case "metacontent":
-      console.log('node', node);
       return node.getAttribute("content");
       default:
       return node.textContent;  

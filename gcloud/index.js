@@ -14,7 +14,11 @@ import {
   navigateFromJson,
   navigateFromJsonPaths,
 } from "./lib/json-util.js";
-import {  fetchHTMLJSDOM, getHTMLProjects, navigateFromHtml } from "./lib/html-util.js";
+import {
+  fetchHTMLJSDOM,
+  getHTMLProjects,
+  navigateFromHtml,
+} from "./lib/html-util.js";
 import { parseDate } from "./lib/parser-util.js";
 import jsdom from "jsdom";
 const { JSDOM } = jsdom;
@@ -47,9 +51,9 @@ functions.http("updateGigs", async (req, res) => {
       case "JSON":
         await iterateJSONProjects(db, provider);
         break;
-        case "JSONHTML":
-          await iterateJSONHTMLProjects(db, provider);
-          break;  
+      case "JSONHTML":
+        await iterateJSONHTMLProjects(db, provider);
+        break;
       case "JSONCOMMON":
         await iterateJSONCOMMONProjects(provider);
         break;
@@ -81,38 +85,44 @@ async function checkAndSaveProject(db, projectObj) {
   }
 }
 
-
 async function iterateHTMLProjects(db, provider) {
   const navigatedProjects = await getHTMLProjects(provider);
-  const { provider_id }  = provider;
+  const { provider_id } = provider;
   const { settings, readSlug } = await import(
     "./providers/" + provider.provider_id + ".js"
   );
   for (const navigatedProject of navigatedProjects) {
-    const slug = readSlug ? readSlug(navigatedProject) : navigateFromHtml(
-      navigatedProject,
-      settings.slug.path,
-      settings.slug.object,
-      false
-    );
+    const slug = readSlug
+      ? readSlug(navigatedProject)
+      : navigateFromHtml(
+          navigatedProject,
+          settings.slug.path,
+          settings.slug.object,
+          false
+        );
     const projectObj = await initProject(db, provider, slug);
     projectObj.slug = slug;
-    const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);    
+    const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
     const jsDom = await fetchHTMLJSDOM(projectlink);
-    Object.keys(settings).forEach(settingkey => {
+    Object.keys(settings).forEach((settingkey) => {
       const { path, useSingle, object, type } = settings[settingkey];
-      projectObj[settingkey] = navigateFromHtml(useSingle ? jsDom.window.document : navigatedProject, path, object, true, type);
+      projectObj[settingkey] = navigateFromHtml(
+        useSingle ? jsDom.window.document : navigatedProject,
+        path,
+        object,
+        true,
+        type
+      );
     });
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
     projectObj.provider = provider_id;
     await checkAndSaveProject(db, projectObj);
   }
-  
 }
 
 async function iterateJSONProjects(db, provider) {
   const navigatedProjects = await getJSONProjects(provider);
-  const { provider_id,homepage }  = provider;
+  const { provider_id, homepage } = provider;
 
   const { settings } = await import(
     "./providers/" + provider.provider_id + ".js"
@@ -123,13 +133,12 @@ async function iterateJSONProjects(db, provider) {
       settings.slug.path,
       settings.slug.object
     ).replace(homepage, "");
-    console.log('slug', slug);
+    console.log("slug", slug);
     const projectlink = provider.projectdetailpage_ref.replace("{slug}", slug);
     const projectObj = await initProject(db, provider, projectlink);
     projectObj.slug = slug;
     const projectDetailJson = await fetchJSON(projectlink);
 
-    
     Object.keys(settings).forEach((settingkey) => {
       const { path, object, useSingle } = settings[settingkey];
       projectObj[settingkey] = navigateFromJson(
@@ -160,7 +169,7 @@ async function iterateJSONProjects(db, provider) {
 
 async function iterateJSONHTMLProjects(db, provider) {
   const navigatedProjects = await getJSONProjects(provider);
-  const { provider_id,homepage }  = provider;
+  const { provider_id, homepage } = provider;
 
   const { settings } = await import(
     "./providers/" + provider.provider_id + ".js"
@@ -175,11 +184,13 @@ async function iterateJSONHTMLProjects(db, provider) {
     const projectObj = await initProject(db, provider, projectlink);
     projectObj.slug = slug;
     const jsDom = await fetchHTMLJSDOM(projectlink);
-    Object.keys(settings).forEach(settingkey => {
+    Object.keys(settings).forEach((settingkey) => {
       const { path, useSingle, object, type } = settings[settingkey];
-      projectObj[settingkey] = useSingle ? navigateFromHtml(jsDom.window.document, path, object, true, type): navigateFromJson(project, path, object).replace(homepage, "");;
+      projectObj[settingkey] = useSingle
+        ? navigateFromHtml(jsDom.window.document, path, object, true, type)
+        : navigateFromJson(project, path, object, type) ? navigateFromJson(project, path, object, type) : null;
     });
-    console.log('projectobj', projectObj);
+    console.log("projectobj", projectObj);
     projectObj.tags = parseTagsFromSkills(projectObj.skills);
     await checkAndSaveProject(db, projectObj);
 
@@ -244,12 +255,12 @@ async function initProject(db, provider, reference) {
     (project && {
       ...project,
       updated_at: currentDate,
-      active: true
+      active: true,
     }) || {
       provider: provider.provider_id,
       created_at: currentDate,
       reference,
-      active: true
+      active: true,
     }
   );
 }
